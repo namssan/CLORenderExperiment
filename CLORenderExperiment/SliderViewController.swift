@@ -8,8 +8,29 @@
 
 import UIKit
 
+protocol SliderViewControllerDelegate : class {
+    func didUpdateSlider(type : Int, val : CGFloat)
+}
+
 class SliderViewController: UIViewController {
 
+    @IBAction func slider01(_ sender: Any) {
+        let slider = sender as! UISlider
+        self.delegate?.didUpdateSlider(type: 0, val: CGFloat(slider.value))
+    }
+    
+    @IBAction func slider02(_ sender: Any) {
+        let slider = sender as! UISlider
+        self.delegate?.didUpdateSlider(type: 1, val: CGFloat(slider.value))
+    }
+    
+    @IBAction func slider03(_ sender: Any) {
+        let slider = sender as! UISlider
+        self.delegate?.didUpdateSlider(type: 2, val: CGFloat(slider.value))
+    }
+    
+    weak var delegate : SliderViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

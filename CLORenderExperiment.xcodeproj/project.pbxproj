@@ -7,13 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		295E6993880DE8A34C04ED24 /* Pods_CLORenderExperiment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C9604138C872D50C9DC789D /* Pods_CLORenderExperiment.framework */; };
+		F64BEE5720AC5CBC00525E2F /* INPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64BEE5620AC5CBC00525E2F /* INPageView.swift */; };
+		F64BEE5920AC85F100525E2F /* SliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64BEE5820AC85F100525E2F /* SliderViewController.swift */; };
 		F6685EB720A45D0D0052F8EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6685EB620A45D0D0052F8EB /* AppDelegate.swift */; };
 		F6685EB920A45D0D0052F8EB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6685EB820A45D0D0052F8EB /* ViewController.swift */; };
 		F6685EBC20A45D0D0052F8EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6685EBA20A45D0D0052F8EB /* Main.storyboard */; };
 		F6685EBE20A45D0E0052F8EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6685EBD20A45D0E0052F8EB /* Assets.xcassets */; };
 		F6685EC120A45D0E0052F8EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6685EBF20A45D0E0052F8EB /* LaunchScreen.storyboard */; };
-		F6685ECC20A45D0E0052F8EB /* CLORenderExperimentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6685ECB20A45D0E0052F8EB /* CLORenderExperimentTests.swift */; };
-		F6685ED720A45D0E0052F8EB /* CLORenderExperimentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6685ED620A45D0E0052F8EB /* CLORenderExperimentUITests.swift */; };
+		F6685EE720A45D580052F8EB /* INPageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6685EE520A45D580052F8EB /* INPageScrollView.swift */; };
+		F6685EED20A45DB40052F8EB /* INDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6685EEA20A45DB40052F8EB /* INDocument.swift */; };
+		F6685EEE20A45DB40052F8EB /* INPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6685EEB20A45DB40052F8EB /* INPage.swift */; };
+		F6685EEF20A45DB40052F8EB /* INStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6685EEC20A45DB40052F8EB /* INStroke.swift */; };
+		F6685EFF20A45DDA0052F8EB /* NPDot.m in Sources */ = {isa = PBXBuildFile; fileRef = F6685EF320A45DDA0052F8EB /* NPDot.m */; };
+		F6685F0020A45DDA0052F8EB /* NPPenRegInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F6685EF520A45DDA0052F8EB /* NPPenRegInfo.m */; };
+		F6685F0120A45DDA0052F8EB /* NPStroke.m in Sources */ = {isa = PBXBuildFile; fileRef = F6685EF720A45DDA0052F8EB /* NPStroke.m */; };
+		F6685F0220A45DDA0052F8EB /* NPCommManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F6685EFA20A45DDA0052F8EB /* NPCommManager.m */; };
+		F6685F0320A45DDA0052F8EB /* NPCommParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F6685EFC20A45DDA0052F8EB /* NPCommParser.m */; };
+		F6685F0420A45DDA0052F8EB /* NPDotChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = F6685EFE20A45DDA0052F8EB /* NPDotChecker.m */; };
+		F6685F0620A45E230052F8EB /* INDot.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6685F0520A45E230052F8EB /* INDot.swift */; };
+		F6685F0A20A45F7F0052F8EB /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6685F0920A45F7F0052F8EB /* Utils.swift */; };
+		F6685F0C20A460E70052F8EB /* INPageMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6685F0B20A460E70052F8EB /* INPageMeta.swift */; };
+		F6E326C420B54BF900C39452 /* INRenderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E326C320B54BF900C39452 /* INRenderProtocol.swift */; };
+		F6E326C620B54C4800C39452 /* INFountainRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E326C520B54C4800C39452 /* INFountainRender.swift */; };
+		F6E326C820B581D500C39452 /* INRenderUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E326C720B581D500C39452 /* INRenderUtils.swift */; };
+		F6E326CC20B59A9D00C39452 /* INNeonRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E326CB20B59A9D00C39452 /* INNeonRender.swift */; };
+		F6E326CE20B5A16F00C39452 /* INNeoPenRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E326CD20B5A16F00C39452 /* INNeoPenRender.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +53,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		116DEF0F86F5FD322C2156E9 /* Pods-CLORenderExperiment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CLORenderExperiment.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CLORenderExperiment/Pods-CLORenderExperiment.debug.xcconfig"; sourceTree = "<group>"; };
+		5C9604138C872D50C9DC789D /* Pods_CLORenderExperiment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CLORenderExperiment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C21E6C28A8530D8D12B41963 /* Pods-CLORenderExperiment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CLORenderExperiment.release.xcconfig"; path = "Pods/Target Support Files/Pods-CLORenderExperiment/Pods-CLORenderExperiment.release.xcconfig"; sourceTree = "<group>"; };
+		F64BEE5620AC5CBC00525E2F /* INPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INPageView.swift; sourceTree = "<group>"; };
+		F64BEE5820AC85F100525E2F /* SliderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewController.swift; sourceTree = "<group>"; };
 		F6685EB320A45D0D0052F8EB /* CLORenderExperiment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CLORenderExperiment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6685EB620A45D0D0052F8EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F6685EB820A45D0D0052F8EB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -42,11 +66,33 @@
 		F6685EC020A45D0E0052F8EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F6685EC220A45D0E0052F8EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6685EC720A45D0E0052F8EB /* CLORenderExperimentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CLORenderExperimentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F6685ECB20A45D0E0052F8EB /* CLORenderExperimentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLORenderExperimentTests.swift; sourceTree = "<group>"; };
-		F6685ECD20A45D0E0052F8EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6685ED220A45D0E0052F8EB /* CLORenderExperimentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CLORenderExperimentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F6685ED620A45D0E0052F8EB /* CLORenderExperimentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLORenderExperimentUITests.swift; sourceTree = "<group>"; };
-		F6685ED820A45D0E0052F8EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F6685EE520A45D580052F8EB /* INPageScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = INPageScrollView.swift; sourceTree = "<group>"; };
+		F6685EEA20A45DB40052F8EB /* INDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = INDocument.swift; sourceTree = "<group>"; };
+		F6685EEB20A45DB40052F8EB /* INPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = INPage.swift; sourceTree = "<group>"; };
+		F6685EEC20A45DB40052F8EB /* INStroke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = INStroke.swift; sourceTree = "<group>"; };
+		F6685EF220A45DDA0052F8EB /* NPDot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPDot.h; sourceTree = "<group>"; };
+		F6685EF320A45DDA0052F8EB /* NPDot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPDot.m; sourceTree = "<group>"; };
+		F6685EF420A45DDA0052F8EB /* NPPenRegInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPPenRegInfo.h; sourceTree = "<group>"; };
+		F6685EF520A45DDA0052F8EB /* NPPenRegInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPPenRegInfo.m; sourceTree = "<group>"; };
+		F6685EF620A45DDA0052F8EB /* NPStroke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPStroke.h; sourceTree = "<group>"; };
+		F6685EF720A45DDA0052F8EB /* NPStroke.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPStroke.m; sourceTree = "<group>"; };
+		F6685EF820A45DDA0052F8EB /* NeoPenService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeoPenService.h; sourceTree = "<group>"; };
+		F6685EF920A45DDA0052F8EB /* NPCommManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPCommManager.h; sourceTree = "<group>"; };
+		F6685EFA20A45DDA0052F8EB /* NPCommManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPCommManager.m; sourceTree = "<group>"; };
+		F6685EFB20A45DDA0052F8EB /* NPCommParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPCommParser.h; sourceTree = "<group>"; };
+		F6685EFC20A45DDA0052F8EB /* NPCommParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPCommParser.m; sourceTree = "<group>"; };
+		F6685EFD20A45DDA0052F8EB /* NPDotChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPDotChecker.h; sourceTree = "<group>"; };
+		F6685EFE20A45DDA0052F8EB /* NPDotChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPDotChecker.m; sourceTree = "<group>"; };
+		F6685F0520A45E230052F8EB /* INDot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = INDot.swift; sourceTree = "<group>"; };
+		F6685F0820A45EB80052F8EB /* CLORenderExperiment-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLORenderExperiment-Bridging-Header.h"; sourceTree = "<group>"; };
+		F6685F0920A45F7F0052F8EB /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		F6685F0B20A460E70052F8EB /* INPageMeta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = INPageMeta.swift; sourceTree = "<group>"; };
+		F6E326C320B54BF900C39452 /* INRenderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INRenderProtocol.swift; sourceTree = "<group>"; };
+		F6E326C520B54C4800C39452 /* INFountainRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INFountainRender.swift; sourceTree = "<group>"; };
+		F6E326C720B581D500C39452 /* INRenderUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INRenderUtils.swift; sourceTree = "<group>"; };
+		F6E326CB20B59A9D00C39452 /* INNeonRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INNeonRender.swift; sourceTree = "<group>"; };
+		F6E326CD20B5A16F00C39452 /* INNeoPenRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INNeoPenRender.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				295E6993880DE8A34C04ED24 /* Pods_CLORenderExperiment.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,13 +121,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		45E47255439D5830055C28E1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				116DEF0F86F5FD322C2156E9 /* Pods-CLORenderExperiment.debug.xcconfig */,
+				C21E6C28A8530D8D12B41963 /* Pods-CLORenderExperiment.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		981926CAB1091289D3D4D868 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5C9604138C872D50C9DC789D /* Pods_CLORenderExperiment.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F6685EAA20A45D0D0052F8EB = {
 			isa = PBXGroup;
 			children = (
 				F6685EB520A45D0D0052F8EB /* CLORenderExperiment */,
-				F6685ECA20A45D0E0052F8EB /* CLORenderExperimentTests */,
-				F6685ED520A45D0E0052F8EB /* CLORenderExperimentUITests */,
 				F6685EB420A45D0D0052F8EB /* Products */,
+				45E47255439D5830055C28E1 /* Pods */,
+				981926CAB1091289D3D4D868 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,8 +161,13 @@
 		F6685EB520A45D0D0052F8EB /* CLORenderExperiment */ = {
 			isa = PBXGroup;
 			children = (
+				F6685F0720A45EB80052F8EB /* Supportings */,
+				F6685EF020A45DDA0052F8EB /* NSPenSDK */,
+				F6685EE920A45DB40052F8EB /* Models */,
+				F6685EE420A45D580052F8EB /* Views */,
 				F6685EB620A45D0D0052F8EB /* AppDelegate.swift */,
 				F6685EB820A45D0D0052F8EB /* ViewController.swift */,
+				F64BEE5820AC85F100525E2F /* SliderViewController.swift */,
 				F6685EBA20A45D0D0052F8EB /* Main.storyboard */,
 				F6685EBD20A45D0E0052F8EB /* Assets.xcassets */,
 				F6685EBF20A45D0E0052F8EB /* LaunchScreen.storyboard */,
@@ -107,22 +176,75 @@
 			path = CLORenderExperiment;
 			sourceTree = "<group>";
 		};
-		F6685ECA20A45D0E0052F8EB /* CLORenderExperimentTests */ = {
+		F6685EE420A45D580052F8EB /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F6685ECB20A45D0E0052F8EB /* CLORenderExperimentTests.swift */,
-				F6685ECD20A45D0E0052F8EB /* Info.plist */,
+				F6685EE520A45D580052F8EB /* INPageScrollView.swift */,
+				F64BEE5620AC5CBC00525E2F /* INPageView.swift */,
 			);
-			path = CLORenderExperimentTests;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		F6685ED520A45D0E0052F8EB /* CLORenderExperimentUITests */ = {
+		F6685EE920A45DB40052F8EB /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F6685ED620A45D0E0052F8EB /* CLORenderExperimentUITests.swift */,
-				F6685ED820A45D0E0052F8EB /* Info.plist */,
+				F6E326C220B54BDE00C39452 /* INRenderer */,
+				F6685F0520A45E230052F8EB /* INDot.swift */,
+				F6685EEA20A45DB40052F8EB /* INDocument.swift */,
+				F6685EEB20A45DB40052F8EB /* INPage.swift */,
+				F6685EEC20A45DB40052F8EB /* INStroke.swift */,
+				F6685F0B20A460E70052F8EB /* INPageMeta.swift */,
 			);
-			path = CLORenderExperimentUITests;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F6685EF020A45DDA0052F8EB /* NSPenSDK */ = {
+			isa = PBXGroup;
+			children = (
+				F6685EF120A45DDA0052F8EB /* Models */,
+				F6685EF820A45DDA0052F8EB /* NeoPenService.h */,
+				F6685EF920A45DDA0052F8EB /* NPCommManager.h */,
+				F6685EFA20A45DDA0052F8EB /* NPCommManager.m */,
+				F6685EFB20A45DDA0052F8EB /* NPCommParser.h */,
+				F6685EFC20A45DDA0052F8EB /* NPCommParser.m */,
+				F6685EFD20A45DDA0052F8EB /* NPDotChecker.h */,
+				F6685EFE20A45DDA0052F8EB /* NPDotChecker.m */,
+			);
+			path = NSPenSDK;
+			sourceTree = SOURCE_ROOT;
+		};
+		F6685EF120A45DDA0052F8EB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F6685EF220A45DDA0052F8EB /* NPDot.h */,
+				F6685EF320A45DDA0052F8EB /* NPDot.m */,
+				F6685EF420A45DDA0052F8EB /* NPPenRegInfo.h */,
+				F6685EF520A45DDA0052F8EB /* NPPenRegInfo.m */,
+				F6685EF620A45DDA0052F8EB /* NPStroke.h */,
+				F6685EF720A45DDA0052F8EB /* NPStroke.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F6685F0720A45EB80052F8EB /* Supportings */ = {
+			isa = PBXGroup;
+			children = (
+				F6685F0920A45F7F0052F8EB /* Utils.swift */,
+				F6685F0820A45EB80052F8EB /* CLORenderExperiment-Bridging-Header.h */,
+			);
+			path = Supportings;
+			sourceTree = "<group>";
+		};
+		F6E326C220B54BDE00C39452 /* INRenderer */ = {
+			isa = PBXGroup;
+			children = (
+				F6E326C720B581D500C39452 /* INRenderUtils.swift */,
+				F6E326C320B54BF900C39452 /* INRenderProtocol.swift */,
+				F6E326C520B54C4800C39452 /* INFountainRender.swift */,
+				F6E326CB20B59A9D00C39452 /* INNeonRender.swift */,
+				F6E326CD20B5A16F00C39452 /* INNeoPenRender.swift */,
+			);
+			path = INRenderer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -132,9 +254,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F6685EDB20A45D0E0052F8EB /* Build configuration list for PBXNativeTarget "CLORenderExperiment" */;
 			buildPhases = (
+				73430B05B79E85F431144FAD /* [CP] Check Pods Manifest.lock */,
 				F6685EAF20A45D0D0052F8EB /* Sources */,
 				F6685EB020A45D0D0052F8EB /* Frameworks */,
 				F6685EB120A45D0D0052F8EB /* Resources */,
+				871461E9BA314AF1C8AC349E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -251,13 +375,76 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		73430B05B79E85F431144FAD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CLORenderExperiment-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		871461E9BA314AF1C8AC349E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CLORenderExperiment/Pods-CLORenderExperiment-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BAFluidView/BAFluidView.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/zipzap/zipzap.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BAFluidView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/zipzap.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CLORenderExperiment/Pods-CLORenderExperiment-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F6685EAF20A45D0D0052F8EB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6685F0420A45DDA0052F8EB /* NPDotChecker.m in Sources */,
+				F6685EEF20A45DB40052F8EB /* INStroke.swift in Sources */,
 				F6685EB920A45D0D0052F8EB /* ViewController.swift in Sources */,
+				F6E326CE20B5A16F00C39452 /* INNeoPenRender.swift in Sources */,
+				F6685EEE20A45DB40052F8EB /* INPage.swift in Sources */,
+				F6685F0620A45E230052F8EB /* INDot.swift in Sources */,
+				F6E326C420B54BF900C39452 /* INRenderProtocol.swift in Sources */,
+				F64BEE5920AC85F100525E2F /* SliderViewController.swift in Sources */,
+				F6685F0A20A45F7F0052F8EB /* Utils.swift in Sources */,
+				F6685F0C20A460E70052F8EB /* INPageMeta.swift in Sources */,
+				F6E326C620B54C4800C39452 /* INFountainRender.swift in Sources */,
+				F6E326C820B581D500C39452 /* INRenderUtils.swift in Sources */,
 				F6685EB720A45D0D0052F8EB /* AppDelegate.swift in Sources */,
+				F6685F0320A45DDA0052F8EB /* NPCommParser.m in Sources */,
+				F6E326CC20B59A9D00C39452 /* INNeonRender.swift in Sources */,
+				F6685EE720A45D580052F8EB /* INPageScrollView.swift in Sources */,
+				F64BEE5720AC5CBC00525E2F /* INPageView.swift in Sources */,
+				F6685EED20A45DB40052F8EB /* INDocument.swift in Sources */,
+				F6685F0020A45DDA0052F8EB /* NPPenRegInfo.m in Sources */,
+				F6685EFF20A45DDA0052F8EB /* NPDot.m in Sources */,
+				F6685F0220A45DDA0052F8EB /* NPCommManager.m in Sources */,
+				F6685F0120A45DDA0052F8EB /* NPStroke.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,7 +452,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6685ECC20A45D0E0052F8EB /* CLORenderExperimentTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,7 +459,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6685ED720A45D0E0052F8EB /* CLORenderExperimentUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,6 +613,7 @@
 		};
 		F6685EDC20A45D0E0052F8EB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 116DEF0F86F5FD322C2156E9 /* Pods-CLORenderExperiment.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -439,6 +625,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.namssan.CLORenderExperiment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CLORenderExperiment/Supportings/CLORenderExperiment-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -446,6 +633,7 @@
 		};
 		F6685EDD20A45D0E0052F8EB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C21E6C28A8530D8D12B41963 /* Pods-CLORenderExperiment.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -457,6 +645,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.namssan.CLORenderExperiment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CLORenderExperiment/Supportings/CLORenderExperiment-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

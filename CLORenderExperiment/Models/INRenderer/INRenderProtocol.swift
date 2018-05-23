@@ -1,5 +1,5 @@
 //
-//  INRendererProtocol.swift
+//  INRenderProtocol.swift
 //  CLORenderExperiment
 //
 //  Created by Sang Nam on 23/5/18.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-protocol INRendererProtocol: class {
+protocol INRenderProtocol: class {
 
-    func renderPath()
-    func drawPath()
+    func createLayer(renderingPath : UIBezierPath) -> INShapeLayer
+    func renderPath(_ dots : [INDot], scale : CGFloat, offset : CGPoint) -> UIBezierPath
     
 }

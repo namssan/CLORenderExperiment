@@ -1,13 +1,13 @@
 //
-//  IdeaNotes-Bridging-Header.h
-//  IdeaNotes
+//  CLORenderExperiment-Bridging-Header.h
+//  CLORenderExperiment
 //
-//  Created by Sang Nam on 1/07/2016.
+//  Created by Sang Nam on 1/07/2018.
 //  Copyright © 2016 Sang Nam. All rights reserved.
 //
 
-#ifndef IdeaNotes_Bridging_Header_h
-#define IdeaNotes_Bridging_Header_h
+#ifndef CLORenderExperiment_Bridging_Header_h
+#define CLORenderExperiment_Bridging_Header_h
 
 
 #import "NPCommManager.h"
@@ -17,4 +17,4 @@
 //#import "UIBezierPath+Interpolation.h"
 
 
-#endif /* IdeaNotes_Bridging_Header_h */
+#endif /* CLORenderExperiment_Bridging_Header_h */
