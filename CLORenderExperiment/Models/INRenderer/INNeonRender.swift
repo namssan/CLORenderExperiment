@@ -46,9 +46,7 @@ class INNeonRender: INRenderProtocol {
             renderPts[renderCtr] = point
             if(renderCtr == 4) {
                 
-                let x = (renderPts[2].x + renderPts[4].x)/2.0
-                let y = (renderPts[2].y + renderPts[4].y)/2.0
-                renderPts[3] = CGPoint(x: x, y: y)
+                renderPts[3] = INRenderUtils.middlePoint(p1: renderPts[2], p2: renderPts[4])
                 
                 renderingPath.move(to: renderPts[0])
                 renderingPath.addCurve(to: renderPts[3], controlPoint1: renderPts[1], controlPoint2: renderPts[2])

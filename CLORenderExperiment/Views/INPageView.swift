@@ -60,17 +60,17 @@ class INPageView: UIView {
         
         for touch in alltouches {
             let loc = touch.location(in: self)
-            
+
             if let prevDot = dots.last {
-                if INRenderUtils.len_sq(p1: prevDot.point(), p2: loc) < 15.0 {
+                if INRenderUtils.len_sq(p1: prevDot.point, p2: loc) < 15.0 {
                     let dotView = self.addDotView(at: loc, dotColor: UIColor.gray)
                     self.dotViews.append(dotView)
 //                    continue
                 }
             }
-            
+
             appendDot(loc: loc, pressure: touch.force/4.0)
-            
+
             let dotView = self.addDotView(at: loc, dotColor: nil)
             self.dotViews.append(dotView)
         }
@@ -78,6 +78,12 @@ class INPageView: UIView {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        self.endStroke()
+ 
+    }
+    
+    private func endStroke() {
         
         let stroke = INStroke(dots: dots, rendertype: .neopen, color: UIColor.black, thickness: 4.0)
         strokes.append(stroke)
@@ -98,6 +104,8 @@ class INPageView: UIView {
     
     
     func drawPath() -> String? {
+        
+//        self.endStroke()
         canvasLayer.removeFromSuperlayer()
         addCanvasLayer()
         let normalizer = max(self.bounds.size.width, self.bounds.size.height)
@@ -119,7 +127,7 @@ class INPageView: UIView {
     }
     
     private func addDotView(at : CGPoint, dotColor : UIColor?) -> UIView {
-        var alpha : CGFloat = (dotColor == nil) ? 0.1 : 0.1
+        var alpha : CGFloat = (dotColor == nil) ? 0.3 : 0.1
         var color = (dotColor == nil) ? UIColor.red : dotColor!
         if (dotColor == nil) && (dots.count > 1 && dots.count % 4 == 0) {
             color = UIColor.blue
@@ -129,7 +137,7 @@ class INPageView: UIView {
         dotView.backgroundColor = color
         dotView.center = at
         dotView.alpha = alpha
-//        self.addSubview(dotView)
+        self.addSubview(dotView)
         return dotView
     }
     

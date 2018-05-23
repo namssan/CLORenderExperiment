@@ -72,8 +72,8 @@ class INNeoPenRender: NSObject {
         
         renderingPath.move(to: temp)
         
-        endPoint.x = temp.x
-        endPoint.y = temp.y
+        endPoint.x = x0 + n_x0
+        endPoint.y = y0 + n_y0
         controlPoint1.x = x0 - n_x0 - dx01
         controlPoint1.y = y0 - n_y0 - dy01
         controlPoint2.x = x0 + n_x0 - dx01
@@ -83,6 +83,14 @@ class INNeoPenRender: NSObject {
         
         let cnt = dots.count
         for i in (2..<cnt-1) {
+            
+            if i % 4 == 0 {
+                if (i + 1) < cnt-1 {
+                    let mp = INRenderUtils.middlePoint(p1: dots[i-1].point, p2: dots[i+1].point)
+                    dots[i].x = mp.x
+                    dots[i].y = mp.y
+                }
+            }
             
             x3 = dots[i].x * scale + offset.x // + 0.1f;
             y3 = dots[i].y * scale + offset.y
@@ -158,7 +166,7 @@ class INNeoPenRender: NSObject {
         endPoint.y = y2 - n_y2;
         controlPoint1.x = x2 + n_x2 - vx21;
         controlPoint1.y = y2 + n_y2 - vy21;
-        controlPoint2.x = x2 - n_x2    - vx21;
+        controlPoint2.x = x2 - n_x2 - vx21;
         controlPoint2.y = y2 - n_y2 - vy21;
         renderingPath.addCurve(to: endPoint, controlPoint1: controlPoint1, controlPoint2: controlPoint2)
         
@@ -179,6 +187,8 @@ class INNeoPenRender: NSObject {
             
             renderingPath.addCurve(to: endPoint, controlPoint1: controlPoint1, controlPoint2: controlPoint2)
         }
+        
+        renderingPath.close()
         return renderingPath
     }
     

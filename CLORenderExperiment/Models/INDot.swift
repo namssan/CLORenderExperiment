@@ -15,6 +15,9 @@ class INDot: NSObject {
     var p : CGFloat
     var t : TimeInterval
     
+    var point : CGPoint {
+        return CGPoint(x: self.x, y: self.y)
+    }
 
     init(point : CGPoint, pressure : CGFloat) {
         x = point.x
@@ -34,7 +37,5 @@ class INDot: NSObject {
         super.init()
     }
     
-    func point() -> CGPoint {
-        return CGPoint(x: x, y: y)
-    }
+
 }
