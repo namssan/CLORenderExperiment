@@ -47,7 +47,7 @@ class INPageView: UIView {
         dots.removeAll()
         appendDot(loc: loc, pressure: touch.force/4.0)
         let dotView = self.addDotView(at: loc, dotColor: nil)
-        self.dotViews.append(dotView)
+//        self.dotViews.append(dotView)
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -72,7 +72,7 @@ class INPageView: UIView {
             appendDot(loc: loc, pressure: touch.force/4.0)
 
             let dotView = self.addDotView(at: loc, dotColor: nil)
-            self.dotViews.append(dotView)
+//            self.dotViews.append(dotView)
         }
         
     }
@@ -80,6 +80,7 @@ class INPageView: UIView {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         self.endStroke()
+        drawPath()
  
     }
     
@@ -92,7 +93,7 @@ class INPageView: UIView {
     private func appendDot(loc : CGPoint, pressure : CGFloat) {
         print("force: \(pressure)")
         let normalizer = max(self.bounds.size.width, self.bounds.size.height)
-        let dot = INDot(point: CGPoint(x: loc.x , y: loc.y), pressure: 1.0)
+        let dot = INDot(point: CGPoint(x: loc.x , y: loc.y), pressure: pressure)
         dots.append(dot)
     }
     

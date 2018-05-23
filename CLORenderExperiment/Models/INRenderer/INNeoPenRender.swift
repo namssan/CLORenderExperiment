@@ -37,7 +37,7 @@ class INNeoPenRender: NSObject {
         let renderingPath = UIBezierPath()
         if(dots.count < 3) { return renderingPath }
         
-        let scaled_pen_thickness : CGFloat = 8.5
+        let scaled_pen_thickness : CGFloat = 10.5
         var x0, x1, x2, x3, y0, y1, y2, y3, p0, p1, p2, p3 : CGFloat
         var dx01, dy01, vx21, vy21 : CGFloat
         var norm : CGFloat
