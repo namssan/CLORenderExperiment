@@ -47,7 +47,7 @@ class INPageView: UIView {
         dots.removeAll()
         appendDot(loc: loc, pressure: touch.force/4.0)
         let dotView = self.addDotView(at: loc, dotColor: nil)
-//        self.dotViews.append(dotView)
+        self.dotViews.append(dotView)
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -72,7 +72,7 @@ class INPageView: UIView {
             appendDot(loc: loc, pressure: touch.force/4.0)
 
             let dotView = self.addDotView(at: loc, dotColor: nil)
-//            self.dotViews.append(dotView)
+            self.dotViews.append(dotView)
         }
         
     }
@@ -138,7 +138,7 @@ class INPageView: UIView {
         dotView.backgroundColor = color
         dotView.center = at
         dotView.alpha = alpha
-        self.addSubview(dotView)
+//        self.addSubview(dotView)
         return dotView
     }
     
