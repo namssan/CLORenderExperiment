@@ -43,6 +43,10 @@ class INPageView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
+    
     
     func drawBegan(at : CGPoint, pressure: CGFloat) {
         dots.removeAll()
@@ -70,15 +74,17 @@ class INPageView: UIView {
     
     private func appendDot(loc : CGPoint, pressure : CGFloat) {
 //        print("force: \(pressure)")
-        let dot = INDot(point: CGPoint(x: loc.x , y: loc.y), pressure: pressure)
+        let dot = INDot(point: CGPoint(x: loc.x, y: loc.y), pressure: pressure)
         dots.append(dot)
     }
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         let loc = touch.location(in: self)
         
-        self.drawBegan(at: loc, pressure: touch.force/4.0)
+        let normalize = max(self.bounds.size.width,self.bounds.size.height)
+        self.drawBegan(at: CGPoint(x: loc.x / normalize, y: loc.y / normalize), pressure: touch.force/4.0)
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -89,27 +95,16 @@ class INPageView: UIView {
             alltouches = coalescedTouches
         }
         
-//        for touch in alltouches {
-//            let loc = touch.location(in: self)
-//
-//            if let prevDot = dots.last {
-//                if INRenderUtils.len_sq(p1: prevDot.point, p2: loc) < 15.0 {
-//                    let dotView = self.addDotView(at: loc, dotColor: UIColor.gray)
-//                    self.dotViews.append(dotView)
-////                    continue
-//                }
-//            }
-//
-//            appendDot(loc: loc, pressure: touch.force/4.0)
-//
-//            let dotView = self.addDotView(at: loc, dotColor: nil)
-//            self.dotViews.append(dotView)
-//        }
+        let normalize = max(self.bounds.size.width,self.bounds.size.height)
+        for touch in alltouches {
+            let loc = touch.location(in: self)
+            self.drawMoved(at: CGPoint(x: loc.x / normalize, y: loc.y / normalize), pressure: touch.force/4.0)
+        }
         
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-
+        self.drawEnded()
     }
     
     
@@ -172,38 +167,5 @@ class INPageView: UIView {
         strokes.removeAll()
         dotViews.removeAll()
     }
-    
-    //    func connectDots() {
-    //
-    //        let layer = INShapeLayer()
-    //        let path = UIBezierPath()
-    //        for (i,dot) in dots.enumerated() {
-    //            if i == 0 {
-    //                path.move(to: dot)
-    //                continue
-    //            }
-    //            path.addLine(to: dot)
-    //        }
-    //        layer.lineWidth = 1.0
-    //        layer.fillColor = UIColor.clear.cgColor
-    //        layer.strokeColor = UIColor.red.cgColor
-    //        layer.path = path.cgPath
-    //        canvasLayer.addSublayer(layer)
-    //    }
-    
-    //    func drawLineSegments() {
-    //
-    //        for ls in self.lineSegments {
-    //            let layer = INShapeLayer()
-    //            let path = UIBezierPath()
-    //            path.move(to: ls.point1)
-    //            path.addLine(to: ls.point2)
-    //            layer.lineWidth = 1.0
-    //            layer.fillColor = UIColor.clear.cgColor
-    //            layer.strokeColor = UIColor.green.cgColor
-    //            layer.path = path.cgPath
-    //            canvasLayer.addSublayer(layer)
-    //        }
-    //    }
     
 }
