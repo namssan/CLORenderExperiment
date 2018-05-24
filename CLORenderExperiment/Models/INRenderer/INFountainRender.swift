@@ -8,7 +8,7 @@
 
 import UIKit
 
-class INFountainRender: INRenderProtocol {
+class INFountainRender: INRenderer {
 
     struct LineSegment {
         var point1 : CGPoint = .zero
@@ -38,22 +38,19 @@ class INFountainRender: INRenderProtocol {
         if let upv = up { self.UPPER = upv }
     }
     
-
-    func createLayer(renderingPath : UIBezierPath) -> INShapeLayer {
-        
-        let layer = INShapeLayer()
+    
+    override func configureLayer(layer: CAShapeLayer, renderingPath : UIBezierPath?) {
         layer.lineJoin = kCALineJoinRound
         layer.lineCap = kCALineCapRound
-        layer.path = renderingPath.cgPath
-        layer.fillColor = UIColor.clear.cgColor
+        layer.path = renderingPath?.cgPath
+        layer.fillColor = UIColor.black.cgColor
+        layer.shadowColor = UIColor.clear.cgColor
         layer.lineWidth = 0.1
         layer.strokeColor = UIColor.black.cgColor
-        
-        return layer
     }
     
     
-    func renderPath(_ dots : [INDot], scale : CGFloat, offset : CGPoint) -> UIBezierPath {
+    override func renderPath(_ dots : [INDot], scale : CGFloat, offset : CGPoint) -> UIBezierPath {
         
         let renderingPath = UIBezierPath()
         

@@ -146,16 +146,16 @@ static float np_sdk_last_y = 0.0;
 
 - (void) dotAppend:(NPDot *)dot
 {
-    if(_simplifyOn) {
-        float diff_x = fabsf(np_sdk_last_x - dot.x);
-        if(diff_x < 0.01) return;
-        
-        float diff_y = fabsf(np_sdk_last_y - dot.y);
-        if(diff_y < 0.01) return;
-    }
-    
-    np_sdk_last_x = dot.x;
-    np_sdk_last_y = dot.y;
+//    if(_simplifyOn) {
+//        float diff_x = fabsf(np_sdk_last_x - dot.x);
+//        if(diff_x < 0.1) return;
+//        
+//        float diff_y = fabsf(np_sdk_last_y - dot.y);
+//        if(diff_y < 0.1) return;
+//        
+//    }
+//    np_sdk_last_x = dot.x;
+//    np_sdk_last_y = dot.y;
     
     if(self.delegate) {
         [self.delegate appendDot:dot isOffine:_isOffline];

@@ -10,9 +10,18 @@ import UIKit
 
 enum INRenderType : Int {
     case neopen
-    case highlighter
-    case ipencil
+    case foutain
+    case neon
     case marker
+    
+    var renderer : INRenderer {
+        switch self {
+        case .neopen: return INNeoPenRender()
+        case .foutain: return INFountainRender()
+        case .neon: return INNeonRender()
+        default: return INDotCircleRender()
+        }
+    }
 }
 
 
@@ -26,7 +35,7 @@ enum INRenderType : Int {
     private var renderPts :[CGPoint] = [.zero,.zero,.zero,.zero,.zero]
     private var renderCtr = 0
     private let internalQueue = DispatchQueue(label: "INStroke.InternalQueue")
-    private var renderer = INNeoPenRender()
+    private var renderer = INRenderer()
     
     var renderType : INRenderType = .neopen
     var dotCount : Int32 = 0
@@ -45,6 +54,7 @@ enum INRenderType : Int {
     init(dots penDots : [INDot], rendertype type: INRenderType, color penColor : UIColor, thickness penThickness : CGFloat) {
         
         renderType = type
+        renderer = type.renderer
         dotCount = Int32(penDots.count)
         color = penColor
         thickness = Float32(penThickness)
@@ -67,6 +77,7 @@ enum INRenderType : Int {
     init(penStroke stroke : NPStroke, rendertype type: INRenderType, color penColor : UIColor, thickness penThickness : CGFloat) {
         
         renderType = type
+        renderer = type.renderer
         dotCount = stroke.dataCount
         startTime = stroke.getStartTime()
         color = penColor

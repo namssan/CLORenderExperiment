@@ -5,11 +5,11 @@ PODS:
 
 DEPENDENCIES:
   - BAFluidView
-  - MBProgressHUD (~> 0.9)
-  - zipzap (~> 8.1.1)
+  - MBProgressHUD
+  - zipzap
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - BAFluidView
     - MBProgressHUD
     - zipzap
@@ -19,6 +19,6 @@ SPEC CHECKSUMS:
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   zipzap: 940162d9c9c60472c2eab341385e4214da0fdf1c
 
-PODFILE CHECKSUM: a883d404e707440dcd891f5d2f27633020fe69dd
+PODFILE CHECKSUM: 4946b32aac76d87ab2c6e6de6f557a3362986099
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.2

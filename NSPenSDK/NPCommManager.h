@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
+#import <UIKit/UIKit.h>
 #import "NeoPenService.h"
 #import "NPPenRegInfo.h"
 #import "NPStroke.h"
@@ -128,7 +129,7 @@ typedef NS_ENUM (NSInteger, NPConnectionSort) {
 
 - (void) setBTComparePassword:(NSString *)pinNumber;
 - (void) setPressureFilter:(NPPressureFilter)filter;
-- (void) setPressureFilterBezier:(float)ctr0 ctr1:(float)ctr1 ctr2:(float)ctr2;
+- (void) setPressureFilterBezier:(CGPoint)ctr0 ctr1:(CGPoint)ctr1 ctr2:(CGPoint)ctr2;
 
 - (void) writePen2SetData:(NSData *)data;
 - (void) writeSetPenState:(NSData *)data;

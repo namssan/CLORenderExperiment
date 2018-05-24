@@ -4,7 +4,7 @@ use_frameworks!
 
 target 'CLORenderExperiment' do
 
-	pod 'zipzap', '~> 8.1.1'
-	pod 'MBProgressHUD', '~> 0.9'
+	pod 'zipzap'
+	pod 'MBProgressHUD'
 	pod 'BAFluidView'
 end

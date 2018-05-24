@@ -294,7 +294,7 @@
 - (void) setPressureFilter:(NPPressureFilter)filter {
     [self.penCommParser setPressureFilter:filter];
 }
-- (void) setPressureFilterBezier:(float)ctr0 ctr1:(float)ctr1 ctr2:(float)ctr2 {
+- (void) setPressureFilterBezier:(CGPoint)ctr0 ctr1:(CGPoint)ctr1 ctr2:(CGPoint)ctr2 {
     [self.penCommParser setPressureFilterBezier:ctr0 ctr1:ctr1 ctr2:ctr2];
 }
 

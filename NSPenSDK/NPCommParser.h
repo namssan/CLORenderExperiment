@@ -6,6 +6,7 @@
 //  Copyright © 2017 Paper Band. All rights reserved.
 //
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "NeoPenService.h"
 
 static inline BOOL isEmpty(id thing) {
@@ -20,7 +21,7 @@ static inline BOOL isEmpty(id thing) {
 
 - (void) setSimplify:(BOOL)on;
 - (void) setPressureFilter:(NPPressureFilter)filter;
-- (void) setPressureFilterBezier:(float)ctr0 ctr1:(float)ctr1 ctr2:(float)ctr2;
+- (void) setPressureFilterBezier:(CGPoint)ctr0 ctr1:(CGPoint)ctr1 ctr2:(CGPoint)ctr2;
 
 - (void) setNoteIdList;
 - (void) setPenPasswd:(NSString *)passwd;

@@ -28,11 +28,14 @@ class INPageView: UIView {
     fileprivate var strokes : [INStroke] = []
     fileprivate var dotViews : [UIView]  = []
     fileprivate var canvasLayer : CAShapeLayer!
+    fileprivate var guideLayer : CAShapeLayer!
+    fileprivate var tmpPath : UIBezierPath!
     
     fileprivate var remain : Int = 0
     override init (frame : CGRect) {
         super.init(frame : frame)
         self.backgroundColor = .white
+        addGuideLayer()
         addCanvasLayer()
     }
     
@@ -40,14 +43,42 @@ class INPageView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    func drawBegan(at : CGPoint, pressure: CGFloat) {
+        dots.removeAll()
+        SettingStore.renderType.renderer.configureLayer(layer: guideLayer, renderingPath: nil)
+        appendDot(loc: at, pressure: pressure)
+    }
+    
+    func drawMoved(at : CGPoint, pressure: CGFloat) {
+        appendDot(loc: at, pressure: pressure)
+        
+        let normalizer = max(self.bounds.size.width, self.bounds.size.height)
+        let tmpStroke = INStroke(dots: dots, rendertype: SettingStore.renderType, color: UIColor.black, thickness: 2.0)
+        tmpPath = tmpStroke.renderStroke(scale: normalizer, offset: .zero)
+        guideLayer.path = tmpPath.cgPath
+    }
+    
+    func drawEnded() {
+        let stroke = INStroke(dots: dots, rendertype: SettingStore.renderType, color: UIColor.black, thickness: 4.0)
+        strokes.append(stroke)
+        
+        tmpPath.removeAllPoints()
+        guideLayer.path = tmpPath.cgPath
+        _ = drawPath()
+    }
+    
+    private func appendDot(loc : CGPoint, pressure : CGFloat) {
+//        print("force: \(pressure)")
+        let dot = INDot(point: CGPoint(x: loc.x , y: loc.y), pressure: pressure)
+        dots.append(dot)
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         let loc = touch.location(in: self)
         
-        dots.removeAll()
-        appendDot(loc: loc, pressure: touch.force/4.0)
-        let dotView = self.addDotView(at: loc, dotColor: nil)
-        self.dotViews.append(dotView)
+        self.drawBegan(at: loc, pressure: touch.force/4.0)
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -58,70 +89,57 @@ class INPageView: UIView {
             alltouches = coalescedTouches
         }
         
-        for touch in alltouches {
-            let loc = touch.location(in: self)
-
-            if let prevDot = dots.last {
-                if INRenderUtils.len_sq(p1: prevDot.point, p2: loc) < 15.0 {
-                    let dotView = self.addDotView(at: loc, dotColor: UIColor.gray)
-                    self.dotViews.append(dotView)
-//                    continue
-                }
-            }
-
-            appendDot(loc: loc, pressure: touch.force/4.0)
-
-            let dotView = self.addDotView(at: loc, dotColor: nil)
-            self.dotViews.append(dotView)
-        }
+//        for touch in alltouches {
+//            let loc = touch.location(in: self)
+//
+//            if let prevDot = dots.last {
+//                if INRenderUtils.len_sq(p1: prevDot.point, p2: loc) < 15.0 {
+//                    let dotView = self.addDotView(at: loc, dotColor: UIColor.gray)
+//                    self.dotViews.append(dotView)
+////                    continue
+//                }
+//            }
+//
+//            appendDot(loc: loc, pressure: touch.force/4.0)
+//
+//            let dotView = self.addDotView(at: loc, dotColor: nil)
+//            self.dotViews.append(dotView)
+//        }
         
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        self.endStroke()
-        drawPath()
- 
-    }
-    
-    private func endStroke() {
-        
-        let stroke = INStroke(dots: dots, rendertype: .neopen, color: UIColor.black, thickness: 4.0)
-        strokes.append(stroke)
-    }
-    
-    private func appendDot(loc : CGPoint, pressure : CGFloat) {
-        print("force: \(pressure)")
-        let normalizer = max(self.bounds.size.width, self.bounds.size.height)
-        let dot = INDot(point: CGPoint(x: loc.x , y: loc.y), pressure: pressure)
-        dots.append(dot)
+
     }
     
     
     private func addCanvasLayer() {
         canvasLayer = CAShapeLayer()
-        self.layer.addSublayer(canvasLayer)
+        self.layer.insertSublayer(canvasLayer, below: guideLayer)
+    }
+    
+    func addGuideLayer() {
+        guideLayer = CAShapeLayer()
+        guideLayer.lineJoin = kCALineJoinRound
+        guideLayer.lineCap = kCALineCapRound
+        guideLayer.fillColor = UIColor.clear.cgColor
+        guideLayer.strokeColor = UIColor.black.cgColor
+        guideLayer.lineWidth = 1.0
+        self.layer.addSublayer(guideLayer)
     }
     
     
     func drawPath() -> String? {
         
-//        self.endStroke()
         canvasLayer.removeFromSuperlayer()
         addCanvasLayer()
         let normalizer = max(self.bounds.size.width, self.bounds.size.height)
         
         for stroke in self.strokes {
-            stroke.renderStroke(scale: 1.0, offset: .zero)
+            stroke.renderStroke(scale: normalizer, offset: .zero)
             let layer = stroke.createLayer()
             canvasLayer.addSublayer(layer)
         }
-        
-        //        self.renderFountainPen(1.0, offset: .zero)
-        //        let layer = self.layer()
-        //        canvasLayer.addSublayer(layer)
-        //        connectDots()
-        //        drawLineSegments()
         
         let str = String(format: "no strokes: %d\nremain strokes: %d", self.dots.count, remain)
         return str

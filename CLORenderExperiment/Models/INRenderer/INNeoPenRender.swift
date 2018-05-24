@@ -8,22 +8,18 @@
 
 import UIKit
 
-class INNeoPenRender: NSObject {
+class INNeoPenRender: INRenderer {
 
-    
-    func createLayer(renderingPath : UIBezierPath) -> INShapeLayer {
-        
-        let layer = INShapeLayer()
+    override func configureLayer(layer: CAShapeLayer, renderingPath : UIBezierPath?) {
         layer.lineJoin = kCALineJoinRound
         layer.lineCap = kCALineCapRound
-        layer.path = renderingPath.cgPath
-//        layer.tag = startTime
-//        layer.renderType = renderType
-        layer.fillColor = UIColor.clear.cgColor
-        layer.strokeColor = UIColor.blue.cgColor
+        layer.path = renderingPath?.cgPath
+        //        layer.tag = startTime
+        //        layer.renderType = renderType
+        layer.shadowColor = UIColor.clear.cgColor
+        layer.fillColor = UIColor.black.cgColor
+        layer.strokeColor = UIColor.black.cgColor
         layer.lineWidth = 0.1
-        
-        return layer
     }
     
     struct PathPointsStruct {
@@ -32,12 +28,12 @@ class INNeoPenRender: NSObject {
         var ctlPoint2 : CGPoint
     }
     
-    func renderPath(_ dots : [INDot], scale : CGFloat, offset : CGPoint) -> UIBezierPath {
+    override func renderPath(_ dots : [INDot], scale : CGFloat, offset : CGPoint) -> UIBezierPath {
         
         let renderingPath = UIBezierPath()
         if(dots.count < 3) { return renderingPath }
         
-        let scaled_pen_thickness : CGFloat = 10.5
+        let scaled_pen_thickness : CGFloat = 1.5
         var x0, x1, x2, x3, y0, y1, y2, y3, p0, p1, p2, p3 : CGFloat
         var dx01, dy01, vx21, vy21 : CGFloat
         var norm : CGFloat
@@ -59,7 +55,7 @@ class INNeoPenRender: NSObject {
         dx01 = x1 - x0
         dy01 = y1 - y0
         // instead of dividing tangent/norm by two, we multiply norm by 2
-        norm = sqrt(dx01 * dx01 + dy01 * dy01 + 0.0001) * 3.0
+        norm = sqrt(dx01 * dx01 + dy01 * dy01 + 0.0001) * 2.0
         dx01 = dx01 / norm * scaled_pen_thickness * p0
         dy01 = dy01 / norm * scaled_pen_thickness * p0
         n_x0 = dy01

@@ -14,6 +14,13 @@ protocol SliderViewControllerDelegate : class {
 
 class SliderViewController: UIViewController {
 
+    @IBOutlet weak var penTypeSelector: UISegmentedControl!
+    
+    @IBAction func penTypeChanged(_ sender: Any) {
+        SettingStore.renderType = INRenderType(rawValue: penTypeSelector.selectedSegmentIndex)!
+    }
+    
+    
     @IBAction func slider01(_ sender: Any) {
         let slider = sender as! UISlider
         self.delegate?.didUpdateSlider(type: 0, val: CGFloat(slider.value))
@@ -35,6 +42,7 @@ class SliderViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.penTypeSelector.selectedSegmentIndex = SettingStore.renderType.rawValue
     }
 
     override func didReceiveMemoryWarning() {

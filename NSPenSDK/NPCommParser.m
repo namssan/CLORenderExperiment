@@ -37,7 +37,7 @@
     
     // pressure filter
     NPPressureFilter _pressureFilterType;
-    Float32 _ctr0,_ctr1,_ctr2;
+    CGPoint _ctr0,_ctr1,_ctr2;
     
     float point_x[POINT_COUNT_MAX];
     float point_y[POINT_COUNT_MAX];
@@ -103,9 +103,9 @@
 
 - (instancetype)init {
     [self reInit];
-    _ctr0 = 0.0;
-    _ctr1 = 0.5;
-    _ctr2 = 1.0;
+    _ctr0 = CGPointMake(0.0, 0.0);
+    _ctr1 = CGPointMake(0.5, 0.5);
+    _ctr2 = CGPointMake(1.0, 1.0);
     _pressureFilterType = NPPressureFilterDefault;
     
     return self;
@@ -121,7 +121,6 @@
     _pageId = 0;
     
     point_count = 0;
-    pressureMax = 255;
     
     _onDotChecker = [[NPDotChecker alloc] init];
     _offDotChecker = [[NPDotChecker alloc] init];
@@ -843,13 +842,13 @@
 - (void) setPressureFilter:(NPPressureFilter)filter {
     _pressureFilterType = filter;
 }
-- (void) setPressureFilterBezier:(float)ctr0 ctr1:(float)ctr1 ctr2:(float)ctr2 {
-    if(ctr0 < 0.0) { ctr0 = 0.0; }
-    if(ctr0 > 1.0) { ctr0 = 1.0; }
-    if(ctr1 < 0.0) { ctr1 = 0.0; }
-    if(ctr1 > 1.0) { ctr1 = 1.0; }
-    if(ctr2 < 0.0) { ctr2 = 0.0; }
-    if(ctr2 > 1.0) { ctr2 = 1.0; }
+- (void) setPressureFilterBezier:(CGPoint)ctr0 ctr1:(CGPoint)ctr1 ctr2:(CGPoint)ctr2 {
+//    if(ctr0 < 0.0) { ctr0 = 0.0; }
+//    if(ctr0 > 1.0) { ctr0 = 1.0; }
+//    if(ctr1 < 0.0) { ctr1 = 0.0; }
+//    if(ctr1 > 1.0) { ctr1 = 1.0; }
+//    if(ctr2 < 0.0) { ctr2 = 0.0; }
+//    if(ctr2 > 1.0) { ctr2 = 1.0; }
     
     _ctr0 = ctr0;
     _ctr1 = ctr1;
@@ -859,14 +858,15 @@
 {
     if(pressureMax == 0) { pressureMax = 255.0; }
     float p = (pressure)/pressureMax;
-
+    float px,py = p;
     if(_pressureFilterType == NPPressureFilterBezier) { // quadratic bezier function
-        p = ((1 - p)*(1 - p)*_ctr0) + (2*p*(1 - p)*_ctr1) + (p*p*_ctr2);
+        px = ((1 - p)*(1 - p)*_ctr0.x) + (2*p*(1 - p)*_ctr1.x) + (p*p*_ctr2.x);
+        py = ((1 - p)*(1 - p)*_ctr0.y) + (2*p*(1 - p)*_ctr1.y) + (p*p*_ctr2.y);
     }
-    if (p < 0.1) { p = 0.1; }
-    if (p > 1.0) { p = 1.0; }
-    
-    return p;
+    if (py < 0.1) { py = 0.1; }
+    if (py > 1.0) { py = 1.0; }
+//    NSLog(@"Pressure change: %f ---> (%f,%f)",p,px,py);
+    return py;
 }
 
 

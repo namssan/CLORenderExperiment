@@ -8,14 +8,12 @@
 
 import UIKit
 
-class INNeonRender: INRenderProtocol {
+class INNeonRender: INRenderer {
 
-    func createLayer(renderingPath : UIBezierPath) -> INShapeLayer {
-        
-        let layer = INShapeLayer()
+    override func configureLayer(layer: CAShapeLayer, renderingPath : UIBezierPath?) {
         layer.lineJoin = kCALineJoinRound
         layer.lineCap = kCALineCapRound
-        layer.path = renderingPath.cgPath
+        layer.path = renderingPath?.cgPath
         layer.strokeColor = UIColor.white.cgColor
         layer.fillColor = UIColor.clear.cgColor
         layer.lineWidth = 6.0
@@ -24,11 +22,9 @@ class INNeonRender: INRenderProtocol {
         layer.shadowColor = UIColor.red.cgColor
         layer.shadowOpacity = 0.7
         layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        
-        return layer
     }
     
-    func renderPath(_ dots : [INDot], scale : CGFloat, offset : CGPoint) -> UIBezierPath {
+    override func renderPath(_ dots : [INDot], scale : CGFloat, offset : CGPoint) -> UIBezierPath {
         
         let renderingPath = UIBezierPath()
         var renderCtr = 0

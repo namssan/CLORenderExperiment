@@ -9,10 +9,9 @@
 /* Begin PBXBuildFile section */
 		017D1087580CE3FB82568EAFE50C21B5 /* ZZScopeGuard.h in Headers */ = {isa = PBXBuildFile; fileRef = F03567C4069E6D552D690B15754CFBC9 /* ZZScopeGuard.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		039D9A37AA9DDD182894AA68160EF8D9 /* ZZDeflateOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D802CAF1B88E24D6C13A4602F7BA87E /* ZZDeflateOutputStream.m */; };
-		09BD2189E50331DFFA1C20E072D8B902 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AE257B9D04E8644EDCCB4D3CD6E35FE /* Foundation.framework */; };
 		0D3BD1EECBDB9876791DDEF2BC32C110 /* ZZFileChannel.h in Headers */ = {isa = PBXBuildFile; fileRef = A7B1C8B89B04CC0DB032C75F01E89365 /* ZZFileChannel.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		11A2A09A6CAFF0DB134AC0D0A2023E62 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AE257B9D04E8644EDCCB4D3CD6E35FE /* Foundation.framework */; };
 		1C33A37996D98ECC4A26529403F9F38A /* ZZFileChannelOutput.h in Headers */ = {isa = PBXBuildFile; fileRef = D8D32CD1AA06F31254F4AF06906D5512 /* ZZFileChannelOutput.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1DA50B023D7747A0D02C4AF3DCF8EEA2 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F09FFFF53893A1B5543431336FB90A6 /* ImageIO.framework */; };
 		22FDD608C2E20E3019FD41323AE04499 /* ZZNewArchiveEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 04E6A81C34127B6B12648C5C77E35B62 /* ZZNewArchiveEntry.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		2B671A763E281D2AFF4E35CA2C06D188 /* ZZStandardCryptoEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ED9C399C47984162F752879C432D3D /* ZZStandardCryptoEngine.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		2C0AFB45707F999B12F18AF345C91971 /* ZZDataChannel.h in Headers */ = {isa = PBXBuildFile; fileRef = F24B9C8389F2C1BC1ADC41B228858896 /* ZZDataChannel.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -27,10 +26,13 @@
 		55263EC4347AA8AFDE628A76EF628D7D /* ZZChannelOutput.h in Headers */ = {isa = PBXBuildFile; fileRef = A5CD1BCB7B87406FC9B2F6B9FAF0757F /* ZZChannelOutput.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		57E9B041CC1D8988C38DDC97CAEFCD76 /* MBProgressHUD-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBA0B3CBEAF47FD2EED254B4A19804E /* MBProgressHUD-dummy.m */; };
 		5C7BA477F4565F1EDB2FD3408B3DE8D1 /* ZZDeflateOutputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C13558D8FEA1F747D9EC0FAADAE7B7D /* ZZDeflateOutputStream.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		609706A2F31E4E0774C8D35DCA135DF2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B81CD864D1795D0DE84029740891A8 /* UIKit.framework */; };
 		6174D587559999EE4BC2A40E44C75201 /* BAFluidView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 44D344A698E3D79988E67CF2451F8693 /* BAFluidView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		648EC8CB62E2279A7B8DFA2E1ABCB0D4 /* ZZArchiveEntryWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 0357B3A055D95F6BBCDCF7CE1BC1D29E /* ZZArchiveEntryWriter.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		66F7BE95419E01D1EB480E902E8903FF /* ZZNewArchiveEntry.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2ED39F92D44D768F3CAA37CE3B5A7077 /* ZZNewArchiveEntry.mm */; };
+		69227BD718D0EDBAAABBD26C9EB6F5DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F5D18F0F0611E2723B36C3DBEDEBBC /* Foundation.framework */; };
 		6A628FE48EE3C5D78FD7D63E50A53C06 /* ZZConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = E500A472A5D0AA00F1CF0621CA8F6E6F /* ZZConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E477F2408A33B019778333C39A908A2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F5D18F0F0611E2723B36C3DBEDEBBC /* Foundation.framework */; };
 		718B211F507C190A988C5BE4D366204D /* ZZNewArchiveEntryWriter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 29EEABA95F34ACE51BB7AF29790FEEC6 /* ZZNewArchiveEntryWriter.mm */; };
 		71DB65060FBFE1F0F2FA4C8332135FC4 /* BAFluidView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DDFD4DFFCF76AEB1657A448BBA6D66 /* BAFluidView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		74CBF396B1E4F44DB34E2993BA442C3E /* ZZStandardCryptoEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC7EC344687B019BBAFF53B41D04D1E6 /* ZZStandardCryptoEngine.cpp */; };
@@ -44,7 +46,7 @@
 		9D978F3596D554C04F6D80E8827CD651 /* ZZArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4B9F87BE583DA526847B41416811728 /* ZZArchive.mm */; };
 		9F1939BA5099096BB8114393D9399D9C /* ZZStandardDecryptInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = CBFE4F505C561A6F85E489AF6FE7FAD7 /* ZZStandardDecryptInputStream.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		9F32812D16F263AD957C1573E042BF84 /* ZZStoreOutputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 21567DFBA1F7F8766FB943B4FF75BEE8 /* ZZStoreOutputStream.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		A1D080E7B985A0ACB307821C28A65E18 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AE257B9D04E8644EDCCB4D3CD6E35FE /* Foundation.framework */; };
+		A3508385721FD61755B064A256E6FA45 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ACD6EFD2C941DDB6639AB37FD5724A4 /* CoreGraphics.framework */; };
 		AA00DCC0C8174B2D7E48EEC3C768B047 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A176D5F2D03010AC4DE404D36FD11062 /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		AC805E9DF64A26E762AE05333F91FF58 /* ZZInflateInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 38532463AFED19865CCCB24096F2FB2B /* ZZInflateInputStream.m */; };
 		B09951BE3589C508798A8C69FFF08D5D /* ZZStandardDecryptInputStream.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71A18D5945552521ED7B2FBD459F54ED /* ZZStandardDecryptInputStream.mm */; };
@@ -53,21 +55,19 @@
 		C168C28B23736E8435859F14D6EE9896 /* ZZInflateInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 7469945EB36872A17BF84A8BE6C26090 /* ZZInflateInputStream.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C4B7E4A4CA4AC3B50F44E1A1213F2D79 /* ZZFileChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4454831ADE6BB82D1429B656FFA97D6B /* ZZFileChannel.m */; };
 		C8896243E16CC01F8AE905A71ACD4B1D /* ZipZap.h in Headers */ = {isa = PBXBuildFile; fileRef = 1806FA19F7DFCA633F0322C79C400D54 /* ZipZap.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CC891E46872E717A2404B5932A5010FB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F5D18F0F0611E2723B36C3DBEDEBBC /* Foundation.framework */; };
 		D206EDC84CE44D5DC711ADD087BC4B17 /* MBProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 31A3ED99DDE9C431015E57660EF18C7F /* MBProgressHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D369215FC4D3F186068BD588A253303B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA07EE2370C60C7823D3FC347E238C84 /* UIKit.framework */; };
 		D39341871279BCECE750C8C5DC2CCB18 /* ZZFileChannelOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F36305D01FBDEAFEF7C3F878FB6477A /* ZZFileChannelOutput.m */; };
 		D3FCBA3834BC8BBAB3A10DC2B7886EB4 /* ZZAESDecryptInputStream.mm in Sources */ = {isa = PBXBuildFile; fileRef = 453CE589AD8F2FB16FF341856753D50D /* ZZAESDecryptInputStream.mm */; };
 		DA4BADBAC5F89830F40EDDCBCE1C69F1 /* BAFluidView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBEFECAB33618863135CB0B43D33C0A /* BAFluidView-dummy.m */; };
 		DF86D66B1D130500F608A44FA34A8DAA /* ZZDataProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F5A9C540421577A22EFB959367EE71E /* ZZDataProvider.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		E38D76F5CE9576E3EE7E7EFD87BB66EB /* ZZHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 628F1CE7E6F744C307CE282FE22B34B3 /* ZZHeaders.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		E4AC26FB387427964538FA5FCEA4A8A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5B8CD8713AFE6B190BCBD58CF3D501 /* CoreGraphics.framework */; };
 		E85F0D4BEB74D2DF50C76252D011757C /* ZZConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = FD2F17C4EDC605478539E3C70BA6D1B2 /* ZZConstants.m */; };
 		EAE4FFC42FF5ED26812BC7EDC5C70EC9 /* ZZArchiveEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 04D87337290B2EFC0D8CF0FD3E581B0B /* ZZArchiveEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EB60AA17D2674E1D347F3B55947547C0 /* ZZNewArchiveEntryWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 4ED38A19C7F4E8BFB7F4AA9D68ACC1F7 /* ZZNewArchiveEntryWriter.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		ECBA1F4D70AF4600563FD39112D5997B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AE257B9D04E8644EDCCB4D3CD6E35FE /* Foundation.framework */; };
 		EDCCB854FDE7AACA0B28130668305127 /* zipzap-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F866FB752BD97DCB83ABE36D9C18C165 /* zipzap-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F16194EAB73B542DF8C62F4A8239D745 /* ZZDataChannelOutput.h in Headers */ = {isa = PBXBuildFile; fileRef = EA08EEE481BF1EC8EEE986FD30537602 /* ZZDataChannelOutput.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F47CB269BA863E5239FB28A5F8EAB349 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8873F796BB8B171B0DDE4F4AFEFC6E7 /* ImageIO.framework */; };
+		F3393050B79513E771DB0D55705E3965 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F5D18F0F0611E2723B36C3DBEDEBBC /* Foundation.framework */; };
 		F8936F6BD8521461D8A5673EA6C915C4 /* ZZDataChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54D317D1AEDD47326377ED56249CC2AF /* ZZDataChannel.m */; };
 		FC821CF40AD1C0A9D85C383C76472E79 /* ZZArchive.h in Headers */ = {isa = PBXBuildFile; fileRef = 38AF46FDD84EAB120E9F2AA1D10AD0EA /* ZZArchive.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FE3A4B1DA33F757A3F869590DED4DCA3 /* ZZError.h in Headers */ = {isa = PBXBuildFile; fileRef = A1E5EDE20750C3139FD3C948A917E9AB /* ZZError.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -109,7 +109,9 @@
 		14C85DB470E65720D7A55C2D76600588 /* MBProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = MBProgressHUD.modulemap; sourceTree = "<group>"; };
 		1806FA19F7DFCA633F0322C79C400D54 /* ZipZap.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZipZap.h; path = ZipZap/ZipZap.h; sourceTree = "<group>"; };
 		18E0429D6628A6F3F86D53AA5A7F8377 /* Pods-CLORenderExperiment-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CLORenderExperiment-dummy.m"; sourceTree = "<group>"; };
+		1ACD6EFD2C941DDB6639AB37FD5724A4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		1C13558D8FEA1F747D9EC0FAADAE7B7D /* ZZDeflateOutputStream.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZZDeflateOutputStream.h; path = ZipZap/ZZDeflateOutputStream.h; sourceTree = "<group>"; };
+		1F09FFFF53893A1B5543431336FB90A6 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/ImageIO.framework; sourceTree = DEVELOPER_DIR; };
 		21567DFBA1F7F8766FB943B4FF75BEE8 /* ZZStoreOutputStream.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZZStoreOutputStream.h; path = ZipZap/ZZStoreOutputStream.h; sourceTree = "<group>"; };
 		22F18BC50A7E257009CD337AAE600601 /* ZZStoreOutputStream.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZZStoreOutputStream.m; path = ZipZap/ZZStoreOutputStream.m; sourceTree = "<group>"; };
 		29EEABA95F34ACE51BB7AF29790FEEC6 /* ZZNewArchiveEntryWriter.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ZZNewArchiveEntryWriter.mm; path = ZipZap/ZZNewArchiveEntryWriter.mm; sourceTree = "<group>"; };
@@ -139,11 +141,11 @@
 		628F1CE7E6F744C307CE282FE22B34B3 /* ZZHeaders.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZZHeaders.h; path = ZipZap/ZZHeaders.h; sourceTree = "<group>"; };
 		69DDFD4DFFCF76AEB1657A448BBA6D66 /* BAFluidView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BAFluidView.m; path = Pod/Classes/BAFluidView.m; sourceTree = "<group>"; };
 		69ED9C399C47984162F752879C432D3D /* ZZStandardCryptoEngine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZZStandardCryptoEngine.h; path = ZipZap/ZZStandardCryptoEngine.h; sourceTree = "<group>"; };
-		6AE257B9D04E8644EDCCB4D3CD6E35FE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		6F30C736681031FDE8B273E867D1C783 /* Pods_CLORenderExperiment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_CLORenderExperiment.framework; path = "Pods-CLORenderExperiment.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		71A18D5945552521ED7B2FBD459F54ED /* ZZStandardDecryptInputStream.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ZZStandardDecryptInputStream.mm; path = ZipZap/ZZStandardDecryptInputStream.mm; sourceTree = "<group>"; };
 		7469945EB36872A17BF84A8BE6C26090 /* ZZInflateInputStream.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZZInflateInputStream.h; path = ZipZap/ZZInflateInputStream.h; sourceTree = "<group>"; };
 		82D3BB6D35E03693A2988511147ED689 /* Constants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = Pod/Classes/Constants.h; sourceTree = "<group>"; };
+		88B81CD864D1795D0DE84029740891A8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		8CBA0B3CBEAF47FD2EED254B4A19804E /* MBProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD-dummy.m"; sourceTree = "<group>"; };
 		8F36305D01FBDEAFEF7C3F878FB6477A /* ZZFileChannelOutput.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZZFileChannelOutput.m; path = ZipZap/ZZFileChannelOutput.m; sourceTree = "<group>"; };
 		91DC7CD5E93DCA88C2E2D48891FA2393 /* BAFluidView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = BAFluidView.framework; path = BAFluidView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,11 +161,9 @@
 		A4B9F87BE583DA526847B41416811728 /* ZZArchive.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ZZArchive.mm; path = ZipZap/ZZArchive.mm; sourceTree = "<group>"; };
 		A5CD1BCB7B87406FC9B2F6B9FAF0757F /* ZZChannelOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZZChannelOutput.h; path = ZipZap/ZZChannelOutput.h; sourceTree = "<group>"; };
 		A7B1C8B89B04CC0DB032C75F01E89365 /* ZZFileChannel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZZFileChannel.h; path = ZipZap/ZZFileChannel.h; sourceTree = "<group>"; };
-		AA5B8CD8713AFE6B190BCBD58CF3D501 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		B2A021AE43DA1D657F6F270CC23C8F9E /* BAFluidView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BAFluidView.xcconfig; sourceTree = "<group>"; };
 		B41A99294B4A73BC0A26D2235A568621 /* MBProgressHUD-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD-umbrella.h"; sourceTree = "<group>"; };
 		B62DBF979CC1B8CE625AD2CC283FFC19 /* Pods-CLORenderExperiment-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CLORenderExperiment-acknowledgements.plist"; sourceTree = "<group>"; };
-		BA07EE2370C60C7823D3FC347E238C84 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		C5365CF083910DB0393E4E02B14B5905 /* Pods-CLORenderExperiment-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CLORenderExperiment-resources.sh"; sourceTree = "<group>"; };
 		C8B8798735FD9A1510C60C5D88F2EF24 /* UIColor+ColorWithHex.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIColor+ColorWithHex.m"; path = "Pod/Classes/UIColor+ColorWithHex.m"; sourceTree = "<group>"; };
 		CA2E0B0FD7AC16B3B9E174F7420A7BF2 /* ZZOldArchiveEntryWriter.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = ZZOldArchiveEntryWriter.mm; path = ZipZap/ZZOldArchiveEntryWriter.mm; sourceTree = "<group>"; };
@@ -171,9 +171,9 @@
 		CC7EC344687B019BBAFF53B41D04D1E6 /* ZZStandardCryptoEngine.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = ZZStandardCryptoEngine.cpp; path = ZipZap/ZZStandardCryptoEngine.cpp; sourceTree = "<group>"; };
 		D213242551108224CFF04E468BD8927F /* Pods-CLORenderExperiment-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CLORenderExperiment-umbrella.h"; sourceTree = "<group>"; };
 		D47CE99797BEE548D2B823970FDE8A74 /* MBProgressHUD-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD-prefix.pch"; sourceTree = "<group>"; };
-		D8873F796BB8B171B0DDE4F4AFEFC6E7 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/ImageIO.framework; sourceTree = DEVELOPER_DIR; };
 		D8D32CD1AA06F31254F4AF06906D5512 /* ZZFileChannelOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZZFileChannelOutput.h; path = ZipZap/ZZFileChannelOutput.h; sourceTree = "<group>"; };
 		DF6A8232FE3880AF01964C3C0902B30D /* ZZDataChannelOutput.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZZDataChannelOutput.m; path = ZipZap/ZZDataChannelOutput.m; sourceTree = "<group>"; };
+		E1F5D18F0F0611E2723B36C3DBEDEBBC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		E3CCD26F28F75F26DFF199FFA933AF96 /* zipzap.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = zipzap.modulemap; sourceTree = "<group>"; };
 		E478324D69402C7E43EF539A3CAAC595 /* ZZArchiveEntry.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZZArchiveEntry.m; path = ZipZap/ZZArchiveEntry.m; sourceTree = "<group>"; };
 		E500A472A5D0AA00F1CF0621CA8F6E6F /* ZZConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZZConstants.h; path = ZipZap/ZZConstants.h; sourceTree = "<group>"; };
@@ -193,8 +193,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				09BD2189E50331DFFA1C20E072D8B902 /* Foundation.framework in Frameworks */,
-				F47CB269BA863E5239FB28A5F8EAB349 /* ImageIO.framework in Frameworks */,
+				CC891E46872E717A2404B5932A5010FB /* Foundation.framework in Frameworks */,
+				1DA50B023D7747A0D02C4AF3DCF8EEA2 /* ImageIO.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,7 +202,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11A2A09A6CAFF0DB134AC0D0A2023E62 /* Foundation.framework in Frameworks */,
+				6E477F2408A33B019778333C39A908A2 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,8 +210,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4AC26FB387427964538FA5FCEA4A8A3 /* CoreGraphics.framework in Frameworks */,
-				ECBA1F4D70AF4600563FD39112D5997B /* Foundation.framework in Frameworks */,
+				A3508385721FD61755B064A256E6FA45 /* CoreGraphics.framework in Frameworks */,
+				69227BD718D0EDBAAABBD26C9EB6F5DD /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,25 +219,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1D080E7B985A0ACB307821C28A65E18 /* Foundation.framework in Frameworks */,
-				D369215FC4D3F186068BD588A253303B /* UIKit.framework in Frameworks */,
+				F3393050B79513E771DB0D55705E3965 /* Foundation.framework in Frameworks */,
+				609706A2F31E4E0774C8D35DCA135DF2 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		050C88EE0235BEF60A1B04AEC999A031 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				AA5B8CD8713AFE6B190BCBD58CF3D501 /* CoreGraphics.framework */,
-				6AE257B9D04E8644EDCCB4D3CD6E35FE /* Foundation.framework */,
-				D8873F796BB8B171B0DDE4F4AFEFC6E7 /* ImageIO.framework */,
-				BA07EE2370C60C7823D3FC347E238C84 /* UIKit.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
 		05F19AEC4A020D0C1158FE0947312D5D /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,7 +258,7 @@
 		14B8B9B15ECBE87983FF987239AB2D7B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				050C88EE0235BEF60A1B04AEC999A031 /* iOS */,
+				E9086636ADD7050169B1B8563E132C89 /* iOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -421,6 +410,17 @@
 			);
 			name = MBProgressHUD;
 			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		E9086636ADD7050169B1B8563E132C89 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				1ACD6EFD2C941DDB6639AB37FD5724A4 /* CoreGraphics.framework */,
+				E1F5D18F0F0611E2723B36C3DBEDEBBC /* Foundation.framework */,
+				1F09FFFF53893A1B5543431336FB90A6 /* ImageIO.framework */,
+				88B81CD864D1795D0DE84029740891A8 /* UIKit.framework */,
+			);
+			name = iOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -748,7 +748,11 @@
 				INFOPLIST_FILE = "Target Support Files/zipzap/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MODULEMAP_FILE = "Target Support Files/zipzap/zipzap.modulemap";
 				PRODUCT_MODULE_NAME = zipzap;
 				PRODUCT_NAME = zipzap;
@@ -779,7 +783,11 @@
 				INFOPLIST_FILE = "Target Support Files/MBProgressHUD/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MODULEMAP_FILE = "Target Support Files/MBProgressHUD/MBProgressHUD.modulemap";
 				PRODUCT_MODULE_NAME = MBProgressHUD;
 				PRODUCT_NAME = MBProgressHUD;
@@ -811,7 +819,11 @@
 				INFOPLIST_FILE = "Target Support Files/MBProgressHUD/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MODULEMAP_FILE = "Target Support Files/MBProgressHUD/MBProgressHUD.modulemap";
 				PRODUCT_MODULE_NAME = MBProgressHUD;
 				PRODUCT_NAME = MBProgressHUD;
@@ -842,7 +854,11 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-CLORenderExperiment/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-CLORenderExperiment/Pods-CLORenderExperiment.modulemap";
 				OTHER_LDFLAGS = "";
@@ -876,7 +892,11 @@
 				INFOPLIST_FILE = "Target Support Files/zipzap/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MODULEMAP_FILE = "Target Support Files/zipzap/zipzap.modulemap";
 				PRODUCT_MODULE_NAME = zipzap;
 				PRODUCT_NAME = zipzap;
@@ -908,7 +928,11 @@
 				INFOPLIST_FILE = "Target Support Files/BAFluidView/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MODULEMAP_FILE = "Target Support Files/BAFluidView/BAFluidView.modulemap";
 				PRODUCT_MODULE_NAME = BAFluidView;
 				PRODUCT_NAME = BAFluidView;
@@ -940,7 +964,11 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-CLORenderExperiment/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-CLORenderExperiment/Pods-CLORenderExperiment.modulemap";
 				OTHER_LDFLAGS = "";
@@ -973,7 +1001,11 @@
 				INFOPLIST_FILE = "Target Support Files/BAFluidView/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MODULEMAP_FILE = "Target Support Files/BAFluidView/BAFluidView.modulemap";
 				PRODUCT_MODULE_NAME = BAFluidView;
 				PRODUCT_NAME = BAFluidView;

@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    fileprivate var penDown = false
+    fileprivate var startDot = false
     
     lazy var canvasScrollView : INPageScrollView = {
         
@@ -30,6 +32,11 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var infoLbl: UILabel!
     
+    @IBAction func neoPenBtnPressed(_ sender: Any) {
+        self.showPenRegisterVC()
+    }
+    
+    
     @IBAction func showSliderVC(_ sender: Any) {
         self.showSliderVC()
     }
@@ -49,7 +56,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+         NPCommManager.sharedInstance().dotHandler = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,7 +74,7 @@ class ViewController: UIViewController {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = mainStoryboard.instantiateViewController(withIdentifier: "SliderVC") as! SliderViewController
         vc.modalPresentationStyle = .popover
-        vc.preferredContentSize = CGSize(width: 250, height: 310)
+        vc.preferredContentSize = CGSize(width: 350, height: 350)
         vc.popoverPresentationController?.delegate = self
         vc.delegate = self
         self.present(vc, animated: true, completion: nil)
@@ -76,7 +83,26 @@ class ViewController: UIViewController {
         let rect = CGRect(x: w - 20.0 , y: 80.0 , width: 20, height: 20)
         
         if let popover = vc.popoverPresentationController {
-            popover.permittedArrowDirections = [.up , .right]
+            popover.permittedArrowDirections = [.up]
+            popover.sourceView = self.view
+            popover.sourceRect = rect
+        }
+    }
+    
+    func showPenRegisterVC() {
+        
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = mainStoryboard.instantiateViewController(withIdentifier: "PenRegisterVC") as! PTPenRegisterViewController
+        vc.modalPresentationStyle = .popover
+        vc.preferredContentSize = CGSize(width: 270, height: 310)
+        vc.popoverPresentationController?.delegate = self
+        self.present(vc, animated: true, completion: nil)
+        
+        let W = self.view.frame.width
+        let rect = CGRect(x: W - 120.0, y:0, width: 0, height: 0)
+        
+        if let popover = vc.popoverPresentationController {
+            popover.permittedArrowDirections = [.left , .right]
             popover.sourceView = self.view
             popover.sourceRect = rect
         }
@@ -104,6 +130,58 @@ extension ViewController : UIPopoverPresentationControllerDelegate {
     
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return adaptivePresentationStyle(for: controller)
+    }
+}
+
+extension ViewController : NPDotHandler {
+    
+    func processDot(_ dotDic: [AnyHashable : Any]!) {
+        
+        guard let cmd = dotDic["type"] else { return }
+        guard let pageId = dotDic["page_id"] as? Int else { return }
+        let type = cmd as! String
+        
+        let offset : CGPoint = .zero
+        let dotNormalizer : CGFloat = max(A4DotCodeSize.width,A4DotCodeSize.height)
+        
+        if(type.compare("stroke") == .orderedSame) {
+            
+            guard penDown else { return }
+            guard let n = dotDic["dot"] else { return }
+            
+            let node = n as! NPDot
+            let nx = (CGFloat(node.x) + offset.x) / dotNormalizer
+            let ny = (CGFloat(node.y) + offset.y) / dotNormalizer
+            let point = CGPoint(x: nx, y: ny)
+            _ = INDot(point:point , pressure: CGFloat(node.pressure))
+            //            print("point: \(point) - pressure: \(node.pressure)")
+            if(startDot) {
+                startDot = false
+                self.canvasScrollView.pageView.drawBegan(at: point, pressure: CGFloat(node.pressure))
+            } else {
+                self.canvasScrollView.pageView.drawMoved(at: point, pressure: CGFloat(node.pressure))
+            }
+            
+            
+        } else if(type.compare("updown") == .orderedSame) {
+            
+            guard let s = dotDic["status"] else { return }
+            let status = s as! String
+            
+            if(status.compare("down") == .orderedSame) {
+                
+                penDown = true
+                startDot = true
+                
+            } else {
+                penDown = false
+                self.canvasScrollView.pageView.drawEnded()
+            }
+            
+        } else {
+            fatalError("impossible dictionary key")
+        }
+        
     }
 }
 
