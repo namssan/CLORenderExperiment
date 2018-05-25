@@ -58,7 +58,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         NPCommManager.sharedInstance().dotHandler = self
         NPCommManager.sharedInstance().setPressureFilter(NPPressureFilter.bezier)
-        NPCommManager.sharedInstance().setPressureFilterBezier(CGPoint(x: 0.0, y: 0.9), ctr1: CGPoint(x: 0.5, y: 1.0), ctr2: CGPoint(x: 1.0, y: 0.1))
+//        NPCommManager.sharedInstance().setPressureFilterBezier(CGPoint(x: 0.0, y: 0.9), ctr1: CGPoint(x: 0.5, y: 1.0), ctr2: CGPoint(x: 1.0, y: 0.1))
     }
 
     override func didReceiveMemoryWarning() {

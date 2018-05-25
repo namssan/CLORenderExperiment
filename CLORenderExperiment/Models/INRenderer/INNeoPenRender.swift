@@ -19,14 +19,14 @@ class INNeoPenRender: INRenderer {
         for dot in dots {
             
             let dotNormalizer = max(A4DotCodeSize.width,A4DotCodeSize.height)
-            let spt = CGFloat(1.0) * (scale / dotNormalizer)
+            let spt = CGFloat(0.5) * (scale / dotNormalizer)
             let len : CGFloat = spt * dot.p
             let p = CGPoint(x: (dot.x * scale) - len/2.0, y: (dot.y * scale) - len/2.0)
             let slayer = CAShapeLayer()
             slayer.fillColor = UIColor.clear.cgColor
             slayer.strokeColor = UIColor.red.cgColor
             slayer.lineWidth = 0.1
-            slayer.opacity = 0.2
+            slayer.opacity = 0.1
             let rect = CGRect(origin: p, size: CGSize(width: len, height: len))
             let path = UIBezierPath(ovalIn: rect)
             slayer.path = path.cgPath
@@ -44,14 +44,9 @@ class INNeoPenRender: INRenderer {
         at.shadowColor = UIColor.clear.cgColor
         at.fillColor = UIColor.black.cgColor
         at.strokeColor = UIColor.clear.cgColor
-        if let rp = renderingPath {
-            let bounds = rp.bounds
-//            at.frame = bounds
-            at.backgroundColor = UIColor.blue.cgColor
-            at.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        }
-//        let debugLayer = self.drawDebug()
-//        at.addSublayer(debugLayer)
+        
+        let debugLayer = self.drawDebug()
+        at.addSublayer(debugLayer)
     }
     
     struct PathPointsStruct {
@@ -76,7 +71,7 @@ class INNeoPenRender: INRenderer {
         if(dots.count < 3) { return renderingPath }
         
         let dotNormalizer = max(A4DotCodeSize.width,A4DotCodeSize.height)
-        let scaled_pen_thickness = CGFloat(1.0) * (scale / dotNormalizer)
+        let scaled_pen_thickness = CGFloat(0.5) * (scale / dotNormalizer)
         var x0, x1, x2, x3, y0, y1, y2, y3, p0, p1, p2, p3 : CGFloat
         var dx01, dy01, vx21, vy21 : CGFloat
         var norm : CGFloat

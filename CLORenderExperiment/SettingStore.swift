@@ -15,7 +15,7 @@ class SettingStore: NSObject {
 
     static let shared = SettingStore()
     static let rndSeed = arc4random_uniform(100)
-    static var renderType : INRenderType = .marker
+    static var renderType : INRenderType = .neopen
     
     static let localDoc : URL = {
         

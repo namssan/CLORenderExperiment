@@ -36,6 +36,7 @@ enum INRenderType : Int {
     private var renderCtr = 0
     private let internalQueue = DispatchQueue(label: "INStroke.InternalQueue")
     private var renderer = INRenderer()
+    private var viewSize : CGSize = .zero
     
     var renderType : INRenderType = .neopen
     var dotCount : Int32 = 0
@@ -115,13 +116,26 @@ enum INRenderType : Int {
     
     func createLayer() -> INShapeLayer {
         let layer = renderer.createLayer(renderingPath:renderingPath)
-        let degrees = 30.0
+
+        let bounds = renderingPath.bounds
+        let anchor = CGPoint(x: bounds.midX/viewSize.width, y: bounds.midY/viewSize.height)
+        
+        layer.anchorPoint = anchor
+        layer.frame = CGRect(origin: .zero, size: viewSize)
+        let degrees = -20.0
         let radians = CGFloat(degrees * Double.pi / 180)
 //        layer.transform = CATransform3DMakeRotation(radians, 0.0, 0.0, 1.0)//CATransform3DMakeScale(1.0, 2.0, 1.0)
+//        layer.transform = CATransform3DMakeScale(1.0, 2.0, 1.0)
+        
+        print("bounds => \(bounds) ---> anchor: \(anchor)")
+
         return layer
     }
     
-    func renderStroke(scale : CGFloat, offset : CGPoint) -> UIBezierPath {
+    func renderStroke(size : CGSize, offset : CGPoint) -> UIBezierPath {
+        
+        self.viewSize = size
+        let normalizer = max(size.width, size.height)
         
         var dots = [INDot]()
         for idx in 0..<dotCount {
@@ -133,7 +147,7 @@ enum INRenderType : Int {
             dots.append(dot)
         }
         
-        renderingPath = renderer.renderPath(dots, scale: scale, offset: offset)
+        renderingPath = renderer.renderPath(dots, scale: normalizer, offset: offset)
         return renderingPath
     }
     

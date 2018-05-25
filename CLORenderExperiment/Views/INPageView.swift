@@ -57,9 +57,8 @@ class INPageView: UIView {
     func drawMoved(at : CGPoint, pressure: CGFloat) {
         appendDot(loc: at, pressure: pressure)
         
-        let normalizer = max(self.bounds.size.width, self.bounds.size.height)
         let tmpStroke = INStroke(dots: dots, rendertype: SettingStore.renderType, color: UIColor.black, thickness: 2.0)
-        tmpPath = tmpStroke.renderStroke(scale: normalizer, offset: .zero)
+        tmpPath = tmpStroke.renderStroke(size: self.bounds.size, offset: .zero)
         guideLayer.path = tmpPath.cgPath
     }
     
@@ -90,11 +89,11 @@ class INPageView: UIView {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         
-        var alltouches = [UITouch]()
-        if let coalescedTouches = event?.coalescedTouches(for: touch) {
+        var alltouches = [touch]
+        let coaledEnalbled = (SettingStore.renderType != .foutain)
+        if coaledEnalbled,  let coalescedTouches = event?.coalescedTouches(for: touch) {
             alltouches = coalescedTouches
         }
-        
         let normalize = max(self.bounds.size.width,self.bounds.size.height)
         for touch in alltouches {
             let loc = touch.location(in: self)
@@ -110,6 +109,8 @@ class INPageView: UIView {
     
     private func addCanvasLayer() {
         canvasLayer = CAShapeLayer()
+//        canvasLayer.frame = self.bounds
+//        canvasLayer.backgroundColor = UIColor.blue.cgColor
         self.layer.insertSublayer(canvasLayer, below: guideLayer)
     }
     
@@ -128,10 +129,9 @@ class INPageView: UIView {
         
         canvasLayer.removeFromSuperlayer()
         addCanvasLayer()
-        let normalizer = max(self.bounds.size.width, self.bounds.size.height)
-        
+
         for stroke in self.strokes {
-            stroke.renderStroke(scale: normalizer, offset: .zero)
+            stroke.renderStroke(size: self.bounds.size, offset: .zero)
             let layer = stroke.createLayer()
             canvasLayer.addSublayer(layer)
         }

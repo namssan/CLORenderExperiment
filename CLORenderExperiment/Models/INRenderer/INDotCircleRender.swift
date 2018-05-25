@@ -14,24 +14,24 @@ class INDotCircleRender: INRenderer {
     override func drawLayer(at: CAShapeLayer, renderingPath : UIBezierPath?) {
         
     }
-    override func createLayer(renderingPath : UIBezierPath) -> INShapeLayer {
-        
-        let layer = INShapeLayer()
-        layer.lineJoin = kCALineJoinRound
-        layer.lineCap = kCALineCapRound
-        layer.path = renderingPath.cgPath
-        layer.strokeColor = UIColor.black.cgColor
-        layer.fillColor = UIColor.black.cgColor
-        layer.shadowColor = UIColor.clear.cgColor
-        layer.lineWidth = 0.2
-        layer.opacity = 0.5
-        
-        return layer
-    }
+//    override func createLayer(renderingPath : UIBezierPath) -> INShapeLayer {
+//        
+//        let layer = INShapeLayer()
+//        layer.lineJoin = kCALineJoinRound
+//        layer.lineCap = kCALineCapRound
+//        layer.path = renderingPath.cgPath
+//        layer.strokeColor = UIColor.black.cgColor
+//        layer.fillColor = UIColor.black.cgColor
+//        layer.shadowColor = UIColor.clear.cgColor
+//        layer.lineWidth = 0.2
+//        layer.opacity = 0.5
+//        
+//        return layer
+//    }
     
     override func renderPath(_ dots : [INDot], scale : CGFloat, offset : CGPoint) -> UIBezierPath {
         
-        print("print render dot: \(dots.count)")
+//        print("print render dot: \(dots.count)")
         let treashold = (3.0 / scale)
         let renderingPath = UIBezierPath()
         for (i,dot) in dots.enumerated() {

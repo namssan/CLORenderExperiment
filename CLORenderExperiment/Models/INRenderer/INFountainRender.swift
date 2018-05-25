@@ -52,7 +52,7 @@ class INFountainRender: INRenderer {
     
     override func renderPath(_ dots : [INDot], scale : CGFloat, offset : CGPoint) -> UIBezierPath {
         
-        let odots = Simplify.simplify(dots, tolerance: Float(0.1 / scale))
+//        let odots = Simplify.simplify(dots, tolerance: Float(0.1 / scale))
         let renderingPath = UIBezierPath()
         
         isFirstTouchPoint = true
@@ -60,7 +60,7 @@ class INFountainRender: INRenderer {
         renderCtr = 0
         
         var ls = Array<LineSegment>(repeating: LineSegment(p1: .zero,p2: .zero), count: 4)
-        for (i,dot) in odots.enumerated() {
+        for (i,dot) in dots.enumerated() {
             
             let point = CGPoint(x: dot.x * scale, y: dot.y * scale)
             if i == 0 {
