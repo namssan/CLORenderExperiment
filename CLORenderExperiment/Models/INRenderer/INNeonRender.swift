@@ -10,18 +10,18 @@ import UIKit
 
 class INNeonRender: INRenderer {
 
-    override func configureLayer(layer: CAShapeLayer, renderingPath : UIBezierPath?) {
-        layer.lineJoin = kCALineJoinRound
-        layer.lineCap = kCALineCapRound
-        layer.path = renderingPath?.cgPath
-        layer.strokeColor = UIColor.white.cgColor
-        layer.fillColor = UIColor.clear.cgColor
-        layer.lineWidth = 6.0
-        layer.cornerRadius = 8.0
-        layer.shadowRadius = 2.0
-        layer.shadowColor = UIColor.red.cgColor
-        layer.shadowOpacity = 0.7
-        layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+    override func drawLayer(at: CAShapeLayer, renderingPath : UIBezierPath?) {
+        at.lineJoin = kCALineJoinRound
+        at.lineCap = kCALineCapRound
+        at.path = renderingPath?.cgPath
+        at.strokeColor = UIColor.white.cgColor
+        at.fillColor = UIColor.clear.cgColor
+        at.lineWidth = 1.0
+        at.cornerRadius = 8.0
+        at.shadowRadius = 2.0
+        at.shadowColor = UIColor.red.cgColor
+        at.shadowOpacity = 0.7
+        at.shadowOffset = CGSize(width: 0.0, height: 0.0)
     }
     
     override func renderPath(_ dots : [INDot], scale : CGFloat, offset : CGPoint) -> UIBezierPath {

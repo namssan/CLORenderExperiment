@@ -29,7 +29,7 @@ class INPageView: UIView {
     fileprivate var dotViews : [UIView]  = []
     fileprivate var canvasLayer : CAShapeLayer!
     fileprivate var guideLayer : CAShapeLayer!
-    fileprivate var tmpPath : UIBezierPath!
+    fileprivate var tmpPath : UIBezierPath = UIBezierPath()
     
     fileprivate var remain : Int = 0
     override init (frame : CGRect) {
@@ -50,7 +50,7 @@ class INPageView: UIView {
     
     func drawBegan(at : CGPoint, pressure: CGFloat) {
         dots.removeAll()
-        SettingStore.renderType.renderer.configureLayer(layer: guideLayer, renderingPath: nil)
+        SettingStore.renderType.renderer.drawLayer(at: guideLayer, renderingPath: nil)
         appendDot(loc: at, pressure: pressure)
     }
     

@@ -9,7 +9,11 @@
 import UIKit
 
 class INDotCircleRender: INRenderer {
-
+    
+    
+    override func drawLayer(at: CAShapeLayer, renderingPath : UIBezierPath?) {
+        
+    }
     override func createLayer(renderingPath : UIBezierPath) -> INShapeLayer {
         
         let layer = INShapeLayer()
@@ -34,7 +38,8 @@ class INDotCircleRender: INRenderer {
             
             let point = CGPoint(x: dot.x * scale, y: dot.y * scale)
             let len = 15.0 * dot.p
-            let subPath = UIBezierPath(ovalIn: CGRect(x: point.x, y: point.y, width: len, height: len))
+            let rect = CGRect(x: point.x, y: point.y, width: len, height: len)
+            let subPath = UIBezierPath(rect: rect)
             renderingPath.append(subPath)
             
             if i > 0 {
@@ -54,7 +59,8 @@ class INDotCircleRender: INRenderer {
                         let slen = (prvDot.p * 15.0) + (dpp * CGFloat(i))
                         let nx = (prvDot.x + (dxx * CGFloat(i))) * scale
                         let ny = (prvDot.y + (dyy * CGFloat(i))) * scale
-                        let subPath = UIBezierPath(ovalIn: CGRect(x: nx, y: ny, width: slen, height: slen))
+                        let rect = CGRect(x: nx, y: ny, width: slen, height: slen)
+                        let subPath = UIBezierPath(rect: rect)//UIBezierPath(ovalIn: )
                         renderingPath.append(subPath)
                     }
                 }

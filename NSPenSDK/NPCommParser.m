@@ -865,7 +865,7 @@
     }
     if (py < 0.1) { py = 0.1; }
     if (py > 1.0) { py = 1.0; }
-//    NSLog(@"Pressure change: %f ---> (%f,%f)",p,px,py);
+    NSLog(@"Pressure change: %f ---> (%f,%f)",p,px,py);
     return py;
 }
 
