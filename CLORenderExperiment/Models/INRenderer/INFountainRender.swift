@@ -39,19 +39,20 @@ class INFountainRender: INRenderer {
     }
     
     
-    override func configureLayer(layer: CAShapeLayer, renderingPath : UIBezierPath?) {
-        layer.lineJoin = kCALineJoinRound
-        layer.lineCap = kCALineCapRound
-        layer.path = renderingPath?.cgPath
-        layer.fillColor = UIColor.black.cgColor
-        layer.shadowColor = UIColor.clear.cgColor
-        layer.lineWidth = 0.1
-        layer.strokeColor = UIColor.black.cgColor
+    override func drawLayer(at: CAShapeLayer, renderingPath : UIBezierPath?) {
+        at.lineJoin = kCALineJoinRound
+        at.lineCap = kCALineCapRound
+        at.path = renderingPath?.cgPath
+        at.fillColor = UIColor.black.cgColor
+        at.shadowColor = UIColor.clear.cgColor
+        at.lineWidth = 0.1
+        at.strokeColor = UIColor.black.cgColor
     }
     
     
     override func renderPath(_ dots : [INDot], scale : CGFloat, offset : CGPoint) -> UIBezierPath {
         
+        let odots = Simplify.simplify(dots, tolerance: Float(0.1 / scale))
         let renderingPath = UIBezierPath()
         
         isFirstTouchPoint = true
@@ -59,7 +60,7 @@ class INFountainRender: INRenderer {
         renderCtr = 0
         
         var ls = Array<LineSegment>(repeating: LineSegment(p1: .zero,p2: .zero), count: 4)
-        for (i,dot) in dots.enumerated() {
+        for (i,dot) in odots.enumerated() {
             
             let point = CGPoint(x: dot.x * scale, y: dot.y * scale)
             if i == 0 {

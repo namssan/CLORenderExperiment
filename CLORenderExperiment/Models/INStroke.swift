@@ -114,7 +114,11 @@ enum INRenderType : Int {
     }
     
     func createLayer() -> INShapeLayer {
-        return renderer.createLayer(renderingPath:renderingPath)
+        let layer = renderer.createLayer(renderingPath:renderingPath)
+        let degrees = 30.0
+        let radians = CGFloat(degrees * Double.pi / 180)
+//        layer.transform = CATransform3DMakeRotation(radians, 0.0, 0.0, 1.0)//CATransform3DMakeScale(1.0, 2.0, 1.0)
+        return layer
     }
     
     func renderStroke(scale : CGFloat, offset : CGPoint) -> UIBezierPath {

@@ -39,6 +39,7 @@
 		F6E326C820B581D500C39452 /* INRenderUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E326C720B581D500C39452 /* INRenderUtils.swift */; };
 		F6E326CC20B59A9D00C39452 /* INNeonRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E326CB20B59A9D00C39452 /* INNeonRender.swift */; };
 		F6E326CE20B5A16F00C39452 /* INNeoPenRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E326CD20B5A16F00C39452 /* INNeoPenRender.swift */; };
+		F6E326D020B6FAB500C39452 /* Simplify.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E326CF20B6FAB400C39452 /* Simplify.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,7 @@
 		F6E326C720B581D500C39452 /* INRenderUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INRenderUtils.swift; sourceTree = "<group>"; };
 		F6E326CB20B59A9D00C39452 /* INNeonRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INNeonRender.swift; sourceTree = "<group>"; };
 		F6E326CD20B5A16F00C39452 /* INNeoPenRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INNeoPenRender.swift; sourceTree = "<group>"; };
+		F6E326CF20B6FAB400C39452 /* Simplify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Simplify.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,6 +264,7 @@
 		F6E326C220B54BDE00C39452 /* INRenderer */ = {
 			isa = PBXGroup;
 			children = (
+				F6E326CF20B6FAB400C39452 /* Simplify.swift */,
 				F6E326C720B581D500C39452 /* INRenderUtils.swift */,
 				F6E326C320B54BF900C39452 /* INRenderProtocol.swift */,
 				F6076E9520B676CD00FA708F /* INRenderer.swift */,
@@ -475,6 +478,7 @@
 				F6685EED20A45DB40052F8EB /* INDocument.swift in Sources */,
 				F6685F0020A45DDA0052F8EB /* NPPenRegInfo.m in Sources */,
 				F6685EFF20A45DDA0052F8EB /* NPDot.m in Sources */,
+				F6E326D020B6FAB500C39452 /* Simplify.swift in Sources */,
 				F6685F0220A45DDA0052F8EB /* NPCommManager.m in Sources */,
 				F6685F0120A45DDA0052F8EB /* NPStroke.m in Sources */,
 			);

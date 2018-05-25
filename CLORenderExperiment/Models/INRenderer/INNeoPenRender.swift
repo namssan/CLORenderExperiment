@@ -10,16 +10,48 @@ import UIKit
 
 class INNeoPenRender: INRenderer {
 
-    override func configureLayer(layer: CAShapeLayer, renderingPath : UIBezierPath?) {
-        layer.lineJoin = kCALineJoinRound
-        layer.lineCap = kCALineCapRound
-        layer.path = renderingPath?.cgPath
+    private var dots = [INDot]()
+    private var scale : CGFloat = 1.0
+    
+    private func drawDebug() -> CAShapeLayer {
+        
+        let debugLayer = CAShapeLayer()
+        for dot in dots {
+            
+            let dotNormalizer = max(A4DotCodeSize.width,A4DotCodeSize.height)
+            let spt = CGFloat(1.0) * (scale / dotNormalizer)
+            let len : CGFloat = spt * dot.p
+            let p = CGPoint(x: (dot.x * scale) - len/2.0, y: (dot.y * scale) - len/2.0)
+            let slayer = CAShapeLayer()
+            slayer.fillColor = UIColor.clear.cgColor
+            slayer.strokeColor = UIColor.red.cgColor
+            slayer.lineWidth = 0.1
+            slayer.opacity = 0.2
+            let rect = CGRect(origin: p, size: CGSize(width: len, height: len))
+            let path = UIBezierPath(ovalIn: rect)
+            slayer.path = path.cgPath
+            debugLayer.addSublayer(slayer)
+        }
+        return debugLayer
+    }
+    
+    override func drawLayer(at: CAShapeLayer, renderingPath : UIBezierPath?) {
+        at.lineJoin = kCALineJoinRound
+        at.lineCap = kCALineCapRound
+        at.path = renderingPath?.cgPath
         //        layer.tag = startTime
         //        layer.renderType = renderType
-        layer.shadowColor = UIColor.clear.cgColor
-        layer.fillColor = UIColor.black.cgColor
-        layer.strokeColor = UIColor.black.cgColor
-        layer.lineWidth = 0.1
+        at.shadowColor = UIColor.clear.cgColor
+        at.fillColor = UIColor.black.cgColor
+        at.strokeColor = UIColor.clear.cgColor
+        if let rp = renderingPath {
+            let bounds = rp.bounds
+//            at.frame = bounds
+            at.backgroundColor = UIColor.blue.cgColor
+            at.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        }
+//        let debugLayer = self.drawDebug()
+//        at.addSublayer(debugLayer)
     }
     
     struct PathPointsStruct {
@@ -30,10 +62,21 @@ class INNeoPenRender: INRenderer {
     
     override func renderPath(_ dots : [INDot], scale : CGFloat, offset : CGPoint) -> UIBezierPath {
         
+        self.dots = dots
+        self.scale = scale
+        
+//        for (i,dot) in dots.enumerated() {
+//            if i > 1 && (i % 4 == 0) {
+//                let mid = INRenderUtils.middlePoint(p1: dots[i-2].point, p2: dot.point)
+//                dots[i-1].x = mid.x
+//                dots[i-1].y = mid.y
+//            }
+//        }
         let renderingPath = UIBezierPath()
         if(dots.count < 3) { return renderingPath }
         
-        let scaled_pen_thickness : CGFloat = 1.5
+        let dotNormalizer = max(A4DotCodeSize.width,A4DotCodeSize.height)
+        let scaled_pen_thickness = CGFloat(1.0) * (scale / dotNormalizer)
         var x0, x1, x2, x3, y0, y1, y2, y3, p0, p1, p2, p3 : CGFloat
         var dx01, dy01, vx21, vy21 : CGFloat
         var norm : CGFloat

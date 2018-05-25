@@ -10,13 +10,13 @@ import UIKit
 
 class INRenderer: INRenderProtocol {
 
-    func configureLayer(layer: CAShapeLayer, renderingPath : UIBezierPath?) {
+    func drawLayer(at: CAShapeLayer, renderingPath : UIBezierPath?) {
         
     }
     
     func createLayer(renderingPath: UIBezierPath) -> INShapeLayer {
         let layer = INShapeLayer()
-        self.configureLayer(layer: layer, renderingPath: renderingPath)
+        self.drawLayer(at: layer, renderingPath: renderingPath)
         return layer
     }
     
