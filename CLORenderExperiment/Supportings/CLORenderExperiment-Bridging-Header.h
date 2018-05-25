@@ -12,6 +12,7 @@
 
 #import "NPCommManager.h"
 #import "NPDot.h"
+#import "BezierUtils.h"
 //#import "INCUtils.h"
 //#import "SwipeView.h"
 //#import "UIBezierPath+Interpolation.h"

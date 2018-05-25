@@ -14,6 +14,10 @@
 		F6076E9420B64F0900FA708F /* INDotCircleRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6076E9320B64F0900FA708F /* INDotCircleRender.swift */; };
 		F6076E9620B676CD00FA708F /* INRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6076E9520B676CD00FA708F /* INRenderer.swift */; };
 		F6076E9820B680FD00FA708F /* SettingStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6076E9720B680FD00FA708F /* SettingStore.swift */; };
+		F6428B1C20B81A3A00103AD3 /* BezierUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F6428B1220B81A3A00103AD3 /* BezierUtils.m */; };
+		F6428B1D20B81A3A00103AD3 /* Drawing-Block.m in Sources */ = {isa = PBXBuildFile; fileRef = F6428B1520B81A3A00103AD3 /* Drawing-Block.m */; };
+		F6428B1E20B81A3A00103AD3 /* BaseGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = F6428B1820B81A3A00103AD3 /* BaseGeometry.m */; };
+		F6428B1F20B81A3A00103AD3 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = F6428B1B20B81A3A00103AD3 /* Utility.m */; };
 		F644B67820B7B7F10047136C /* TransformTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F644B67720B7B7F10047136C /* TransformTestViewController.swift */; };
 		F64BEE5720AC5CBC00525E2F /* INPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64BEE5620AC5CBC00525E2F /* INPageView.swift */; };
 		F64BEE5920AC85F100525E2F /* SliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64BEE5820AC85F100525E2F /* SliderViewController.swift */; };
@@ -70,6 +74,14 @@
 		F6076E9320B64F0900FA708F /* INDotCircleRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INDotCircleRender.swift; sourceTree = "<group>"; };
 		F6076E9520B676CD00FA708F /* INRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INRenderer.swift; sourceTree = "<group>"; };
 		F6076E9720B680FD00FA708F /* SettingStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingStore.swift; sourceTree = "<group>"; };
+		F6428B1120B81A3A00103AD3 /* BezierUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BezierUtils.h; sourceTree = "<group>"; };
+		F6428B1220B81A3A00103AD3 /* BezierUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BezierUtils.m; sourceTree = "<group>"; };
+		F6428B1420B81A3A00103AD3 /* Drawing-Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Drawing-Block.h"; sourceTree = "<group>"; };
+		F6428B1520B81A3A00103AD3 /* Drawing-Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Drawing-Block.m"; sourceTree = "<group>"; };
+		F6428B1720B81A3A00103AD3 /* BaseGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseGeometry.h; sourceTree = "<group>"; };
+		F6428B1820B81A3A00103AD3 /* BaseGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseGeometry.m; sourceTree = "<group>"; };
+		F6428B1A20B81A3A00103AD3 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		F6428B1B20B81A3A00103AD3 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		F644B67720B7B7F10047136C /* TransformTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransformTestViewController.swift; path = ViewControllers/TransformTestViewController.swift; sourceTree = "<group>"; };
 		F64BEE5620AC5CBC00525E2F /* INPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INPageView.swift; sourceTree = "<group>"; };
 		F64BEE5820AC85F100525E2F /* SliderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewController.swift; sourceTree = "<group>"; };
@@ -162,6 +174,53 @@
 				F6076E8820B645F400FA708F /* PTPenRegisterViewController.swift */,
 			);
 			path = PenRegister;
+			sourceTree = "<group>";
+		};
+		F6428B0F20B81A3A00103AD3 /* Quartz Book Pack */ = {
+			isa = PBXGroup;
+			children = (
+				F6428B1020B81A3A00103AD3 /* Bezier */,
+				F6428B1320B81A3A00103AD3 /* Drawing */,
+				F6428B1620B81A3A00103AD3 /* Geometry */,
+				F6428B1920B81A3A00103AD3 /* Utility */,
+			);
+			path = "Quartz Book Pack";
+			sourceTree = "<group>";
+		};
+		F6428B1020B81A3A00103AD3 /* Bezier */ = {
+			isa = PBXGroup;
+			children = (
+				F6428B1120B81A3A00103AD3 /* BezierUtils.h */,
+				F6428B1220B81A3A00103AD3 /* BezierUtils.m */,
+			);
+			path = Bezier;
+			sourceTree = "<group>";
+		};
+		F6428B1320B81A3A00103AD3 /* Drawing */ = {
+			isa = PBXGroup;
+			children = (
+				F6428B1420B81A3A00103AD3 /* Drawing-Block.h */,
+				F6428B1520B81A3A00103AD3 /* Drawing-Block.m */,
+			);
+			path = Drawing;
+			sourceTree = "<group>";
+		};
+		F6428B1620B81A3A00103AD3 /* Geometry */ = {
+			isa = PBXGroup;
+			children = (
+				F6428B1720B81A3A00103AD3 /* BaseGeometry.h */,
+				F6428B1820B81A3A00103AD3 /* BaseGeometry.m */,
+			);
+			path = Geometry;
+			sourceTree = "<group>";
+		};
+		F6428B1920B81A3A00103AD3 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				F6428B1A20B81A3A00103AD3 /* Utility.h */,
+				F6428B1B20B81A3A00103AD3 /* Utility.m */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		F6685EAA20A45D0D0052F8EB = {
@@ -267,6 +326,7 @@
 		F6E326C220B54BDE00C39452 /* INRenderer */ = {
 			isa = PBXGroup;
 			children = (
+				F6428B0F20B81A3A00103AD3 /* Quartz Book Pack */,
 				F6E326CF20B6FAB400C39452 /* Simplify.swift */,
 				F6E326C720B581D500C39452 /* INRenderUtils.swift */,
 				F6E326C320B54BF900C39452 /* INRenderProtocol.swift */,
@@ -457,17 +517,21 @@
 			files = (
 				F6685F0420A45DDA0052F8EB /* NPDotChecker.m in Sources */,
 				F644B67820B7B7F10047136C /* TransformTestViewController.swift in Sources */,
+				F6428B1E20B81A3A00103AD3 /* BaseGeometry.m in Sources */,
 				F6685EEF20A45DB40052F8EB /* INStroke.swift in Sources */,
 				F6685EB920A45D0D0052F8EB /* ViewController.swift in Sources */,
 				F6076E9120B6489C00FA708F /* DBModel.xcdatamodeld in Sources */,
 				F6076E9420B64F0900FA708F /* INDotCircleRender.swift in Sources */,
 				F6E326CE20B5A16F00C39452 /* INNeoPenRender.swift in Sources */,
+				F6428B1F20B81A3A00103AD3 /* Utility.m in Sources */,
 				F6685EEE20A45DB40052F8EB /* INPage.swift in Sources */,
 				F6685F0620A45E230052F8EB /* INDot.swift in Sources */,
 				F6076E9220B6489C00FA708F /* PTDBManager.swift in Sources */,
 				F6E326C420B54BF900C39452 /* INRenderProtocol.swift in Sources */,
+				F6428B1C20B81A3A00103AD3 /* BezierUtils.m in Sources */,
 				F64BEE5920AC85F100525E2F /* SliderViewController.swift in Sources */,
 				F6076E9620B676CD00FA708F /* INRenderer.swift in Sources */,
+				F6428B1D20B81A3A00103AD3 /* Drawing-Block.m in Sources */,
 				F6685F0A20A45F7F0052F8EB /* Utils.swift in Sources */,
 				F6685F0C20A460E70052F8EB /* INPageMeta.swift in Sources */,
 				F6E326C620B54C4800C39452 /* INFountainRender.swift in Sources */,

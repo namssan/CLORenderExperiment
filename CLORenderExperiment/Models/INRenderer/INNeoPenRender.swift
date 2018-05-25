@@ -38,15 +38,22 @@ class INNeoPenRender: INRenderer {
     override func drawLayer(at: CAShapeLayer, renderingPath : UIBezierPath?) {
         at.lineJoin = kCALineJoinRound
         at.lineCap = kCALineCapRound
+        
+        let degrees = -20.0
+        let radians = CGFloat(degrees * Double.pi / 180)
+        let t = CGAffineTransform(rotationAngle: radians)
+        
+        if let path = renderingPath {
+//            ApplyCenteredPathTransform(path, t)
+            print("transform: \(t)")
+        }
         at.path = renderingPath?.cgPath
-        //        layer.tag = startTime
-        //        layer.renderType = renderType
         at.shadowColor = UIColor.clear.cgColor
         at.fillColor = UIColor.black.cgColor
         at.strokeColor = UIColor.clear.cgColor
         
-        let debugLayer = self.drawDebug()
-        at.addSublayer(debugLayer)
+//        let debugLayer = self.drawDebug()
+//        at.addSublayer(debugLayer)
     }
     
     struct PathPointsStruct {
@@ -60,13 +67,6 @@ class INNeoPenRender: INRenderer {
         self.dots = dots
         self.scale = scale
         
-//        for (i,dot) in dots.enumerated() {
-//            if i > 1 && (i % 4 == 0) {
-//                let mid = INRenderUtils.middlePoint(p1: dots[i-2].point, p2: dot.point)
-//                dots[i-1].x = mid.x
-//                dots[i-1].y = mid.y
-//            }
-//        }
         let renderingPath = UIBezierPath()
         if(dots.count < 3) { return renderingPath }
         

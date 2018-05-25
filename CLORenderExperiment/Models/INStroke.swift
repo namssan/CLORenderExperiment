@@ -127,7 +127,7 @@ enum INRenderType : Int {
 //        layer.transform = CATransform3DMakeRotation(radians, 0.0, 0.0, 1.0)//CATransform3DMakeScale(1.0, 2.0, 1.0)
 //        layer.transform = CATransform3DMakeScale(1.0, 2.0, 1.0)
         
-        print("bounds => \(bounds) ---> anchor: \(anchor)")
+//        print("bounds => \(bounds) ---> anchor: \(anchor)")
 
         return layer
     }
