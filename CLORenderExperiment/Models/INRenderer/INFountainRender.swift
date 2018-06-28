@@ -8,7 +8,29 @@
 
 import UIKit
 
-class INFountainRender: INRenderer {
+class INFountainRender: INRenderProtocol {
+    func drawStroke(at ctx: CGContext, color: UIColor, width: CGFloat, renderingPath: UIBezierPath) {
+        
+    }
+    
+    
+    func createLayer(color: UIColor, width: CGFloat, renderingPath: UIBezierPath) -> CAShapeLayer {
+        let layer = CAShapeLayer()
+        drawLayer(at: layer, color: color, width: width, renderingPath: renderingPath)
+        return layer
+    }
+    
+    func drawLayer(at layer: CAShapeLayer, color: UIColor, width: CGFloat, renderingPath: UIBezierPath) {
+        
+        layer.lineJoin = kCALineJoinRound
+        layer.lineCap = kCALineCapRound
+        layer.path = renderingPath.cgPath
+        layer.fillColor = UIColor.black.cgColor
+        layer.shadowColor = UIColor.clear.cgColor
+        layer.lineWidth = 0.0
+        layer.strokeColor = UIColor.black.cgColor
+    }
+    
 
     struct LineSegment {
         var point1 : CGPoint = .zero
@@ -38,19 +60,7 @@ class INFountainRender: INRenderer {
         if let upv = up { self.UPPER = upv }
     }
     
-    
-    override func drawLayer(at: CAShapeLayer, renderingPath : UIBezierPath?) {
-        at.lineJoin = kCALineJoinRound
-        at.lineCap = kCALineCapRound
-        at.path = renderingPath?.cgPath
-        at.fillColor = UIColor.black.cgColor
-        at.shadowColor = UIColor.clear.cgColor
-        at.lineWidth = 0.1
-        at.strokeColor = UIColor.black.cgColor
-    }
-    
-    
-    override func renderPath(_ dots : [INDot], scale : CGFloat, offset : CGPoint) -> UIBezierPath {
+    func renderPath(_ dots : [INDot], scale : CGFloat, offset : CGPoint, width: CGFloat) -> UIBezierPath {
         
 //        let odots = Simplify.simplify(dots, tolerance: Float(0.1 / scale))
         let renderingPath = UIBezierPath()

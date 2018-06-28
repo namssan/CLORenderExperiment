@@ -23,6 +23,7 @@ class INPageScrollView: UIScrollView {
     fileprivate var lastY : CGFloat = -1000.0
     fileprivate var doubleTap : UITapGestureRecognizer?
     fileprivate var fingerDrawEnabled : Bool = false
+    fileprivate var selectionPanGesture : UILongPressGestureRecognizer?
     
     fileprivate var decideZooming : Bool = true
     fileprivate var isZoomOut : Bool = false
@@ -205,6 +206,30 @@ class INPageScrollView: UIScrollView {
         self.zoom(to: rect, animated: true)
     }
     
+    func addSelectionPanGesture() {
+        
+        if (self.selectionPanGesture == nil) {
+            self.selectionPanGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleSelectionPanGesture(_:)))
+            self.selectionPanGesture?.allowableMovement = CGFloat.infinity
+            self.selectionPanGesture?.minimumPressDuration = 0.05
+            self.selectionPanGesture?.numberOfTouchesRequired = 1
+            self.selectionPanGesture?.delegate = self
+            self.addGestureRecognizer(selectionPanGesture!)
+        }
+    }
+    
+    func removeSelectionPanGesture() {
+        
+        if (self.selectionPanGesture != nil) {
+            self.removeGestureRecognizer(self.selectionPanGesture!)
+            self.selectionPanGesture = nil
+        }
+    }
+    
+    @objc func handleSelectionPanGesture(_ gesture : UILongPressGestureRecognizer) {
+        self.pageView.selectionView?.handlePanGesture(gesture)
+    }
+    
     
 }
 
@@ -247,6 +272,12 @@ extension INPageScrollView : UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
+    }
+}
+
+extension INPageScrollView : UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }
 

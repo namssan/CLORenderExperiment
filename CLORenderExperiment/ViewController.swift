@@ -38,7 +38,8 @@ class ViewController: UIViewController {
     
     
     @IBAction func showSliderVC(_ sender: Any) {
-        self.showSliderVC()
+//        self.showSliderVC()
+        self.canvasScrollView.pageView.addSelectionVeiw()
     }
     
     @IBAction func earserBtnPressed(_ sender: Any) {
@@ -48,9 +49,9 @@ class ViewController: UIViewController {
     
     @IBAction func pathBtnPressed(_ sender: Any) {
         
-        if let str = self.canvasScrollView.pageView.drawPath() {
-            self.infoLbl.text = str
-        }
+//        if let str = self.canvasScrollView.pageView.drawPath() {
+//            self.infoLbl.text = str
+//        }
     }
     
     override func viewDidLoad() {
@@ -116,7 +117,7 @@ extension ViewController : SliderViewControllerDelegate {
     func didUpdateSlider(type: Int, val: CGFloat) {
 
 //        self.canvasScrollView.pageView.updateValues(ff: (type == 0) ? val : nil , lw: (type == 1) ? val : nil, up: (type == 2) ? val : nil)
-        self.canvasScrollView.pageView.drawPath()
+//        self.canvasScrollView.pageView.drawPath()
     }
 }
 
