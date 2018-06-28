@@ -144,7 +144,7 @@ class INSelectionView: UIView {
         var len = dx + dy
         var unit : CGFloat = 160.0
         if let ds = datasource {
-            let zoomScale = ds.zoomScale() / 3.0
+            let zoomScale = ds.zoomScale() / 2.0
             if zoomScale > 1.0 { unit /= zoomScale }
         }
         
