@@ -66,8 +66,13 @@ class INSelectionView: UIView {
     @objc func handlePanGesture(_ gesture : UILongPressGestureRecognizer) {
         
         let loc = gesture.location(in: self.superview)
-        let loc1 = gesture.location(in: self)
+        var loc1 = gesture.location(in: self)
+        var loc2 = gesture.location(in: self)
+        loc2.x /= originalTransform.a
+        loc2.y /= originalTransform.a
         let state = gesture.state
+        
+        print("loc1 :\(loc1) --- \(loc2)")
         
         if state == .began {
             selectType = selectRect.insetBy(dx: -15.0, dy: -15.0).contains(loc1) ? .translation : .none
@@ -138,13 +143,15 @@ class INSelectionView: UIView {
         let dy = loc.y - startLoc.y
 
         if type == .lefttop {
-            scale = 1.0 - dx / 30.0
+            scale = 1.0 - dx / 80.0
         }
     
-        if self.transform.a < 0.1  {
+        let newTransform = self.originalTransform.scaledBy(x: scale, y: scale)
+        if newTransform.a < 0.1  {
             print("transform scale too small: \(self.transform.a)")
+            return
         }
-        self.transform = self.originalTransform.scaledBy(x: scale, y: scale)
+        self.transform = newTransform
     }
     
     
