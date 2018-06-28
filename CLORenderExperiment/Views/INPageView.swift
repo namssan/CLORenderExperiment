@@ -186,16 +186,21 @@ class INPageView: UIView {
     
     
     func addSelectionVeiw() {
-        selectionView?.removeFromSuperview()
-        selectionView = nil
-        
         guard strokes.count > 0 else { return }
         selectionView = INSelectionView(frame: self.bounds, strokes: strokes)
         selectionView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         selectionView?.delegate = self
+        selectionView?.datasource = self
         self.addSubview(selectionView!)
         
         scrollView?.addSelectionPanGesture()
+    }
+    
+    func removeSelectionView() {
+        selectionView?.removeFromSuperview()
+        selectionView = nil
+        
+        scrollView?.removeSelectionPanGesture()
     }
     
 //    func drawPath() -> String? {
@@ -285,10 +290,22 @@ class INPageView: UIView {
 
 extension INPageView : INSelectionViewDelegate {
     func didApplyTransform(transform: CGAffineTransform) {
+//        scrollView?.removeSelectionPanGesture()
+//        selectionView?.removeFromSuperview()
+//        selectionView = nil
+    }
+    
+    func didMoveOutOfView() {
+        print("Out of View!!!!!!")
         scrollView?.removeSelectionPanGesture()
-        
         selectionView?.removeFromSuperview()
         selectionView = nil
+    }
+}
+
+extension INPageView : INSelectionViewDataSource {
+    func zoomScale() -> CGFloat {
+        return scrollView!.zoomScale
     }
 }
 

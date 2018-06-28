@@ -139,6 +139,9 @@ extension CGSize {
 // MARK: CGRect accessors
 //
 
+func *(l: CGRect, r: CGFloat) -> CGRect { return CGRect(origin: l.origin * r, size: l.size * r) }
+func /(l: CGRect, r: CGFloat) -> CGRect { return CGRect(origin: l.origin / r, size: l.size / r) }
+
 extension CGRect {
     init(origin: CGPoint) {
         self.init()

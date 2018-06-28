@@ -9,7 +9,7 @@
 import UIKit
 
 enum INSelectType: Int {
-    case none
+    case done
     case translation
     case rotation
     case lefttop
@@ -25,13 +25,18 @@ enum INSelectType: Int {
             case .righttop: return "righttop"
             case .leftbottom: return "leftbottom"
             case .rightbottom: return "rightbottom"
-            default: return "none"
+            default: return "Done"
         }
     }
 }
 
 protocol INSelectionViewDelegate : class {
     func didApplyTransform(transform: CGAffineTransform)
+    func didMoveOutOfView()
+}
+
+protocol INSelectionViewDataSource : class {
+    func zoomScale() -> CGFloat
 }
 
 class INSelectionView: UIView {
@@ -44,17 +49,32 @@ class INSelectionView: UIView {
     }
     */
     var delegate : INSelectionViewDelegate?
+    var datasource : INSelectionViewDataSource?
     
     fileprivate var startLoc : CGPoint = .zero
-    fileprivate var startCenter : CGPoint = .zero
-    fileprivate var moveOffset : CGPoint = .zero
+
     
-    fileprivate var selectType : INSelectType = .none
+    fileprivate var selectType : INSelectType = .done
     fileprivate var selectRect : CGRect = .zero
     fileprivate var selRectLayer : CAShapeLayer?
     
     fileprivate var strokes = [INStroke]()
     fileprivate var originalTransform : CGAffineTransform = CGAffineTransform.identity
+    
+    fileprivate var rotateBtn = UIButton()
+    fileprivate var leftTopBtn = UIButton()
+    fileprivate var leftBottomBtn = UIButton()
+    fileprivate var rightTopBtn = UIButton()
+    fileprivate var rightBottomBtn = UIButton()
+    
+    
+    lazy var contentView : UIView = {
+        
+        let view = UIView(frame: self.bounds)
+        self.addSubview(view)
+        
+        return view
+    } ()
     
 
     convenience init(frame: CGRect, strokes : [INStroke]) {
@@ -66,39 +86,42 @@ class INSelectionView: UIView {
     @objc func handlePanGesture(_ gesture : UILongPressGestureRecognizer) {
         
         let loc = gesture.location(in: self.superview)
-        var loc1 = gesture.location(in: self)
-        var loc2 = gesture.location(in: self)
-        loc2.x /= originalTransform.a
-        loc2.y /= originalTransform.a
+        let loc1 = gesture.location(in: self.contentView)
         let state = gesture.state
         
-//        print("loc1 :\(loc1) --- \(loc2)")
-        
         if state == .began {
-            selectType = selectRect.insetBy(dx: -15.0, dy: -15.0).contains(loc1) ? .translation : .none
-            if selectType == .none {
-                let transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-                delegate?.didApplyTransform(transform: transform)
-                
+            startLoc = loc
+            selectType = decideSelectType(at: loc1)
+            
+            if selectType == .rotation {
+                originalTransform = self.contentView.transform
             } else {
-                startLoc = loc
-                startCenter = self.center
                 originalTransform = self.transform
-                // check touch point of finger
-                moveOffset = CGPoint(x: loc1.x - selectRect.origin.x, y: loc1.y - selectRect.origin.y)
-                selectType = decideSelectType(at: loc1)
             }
             
         } else if(gesture.state == .ended || gesture.state == .cancelled) {
             print("selection type: \(selectType.string)")
+            // check if selectRect is out of view
+            let crect = self.convert(selectRect, to: self.superview).insetBy(dx: 10.0, dy: 10.0)
+            let srect = self.superview!.frame
+            if srect.intersects(crect) {
+                if selectType == .done {
+                    let transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                    delegate?.didApplyTransform(transform: transform)
+                } else {
+                    // do nothing
+                }
+            } else {
+                delegate?.didMoveOutOfView()
+            }
             
         } else {
-            guard selectType != .none else { return }
+            guard selectType != .done else { return }
             
             if selectType == .translation {
                 handleTranslation(at: loc)
             } else if selectType == .rotation {
-                
+                handleRotation(at: loc)
             } else {
                 handleScale(at: loc, type: selectType)
             }
@@ -107,73 +130,75 @@ class INSelectionView: UIView {
     
     private func handleTranslation(at : CGPoint) {
         
-        var loc = at
-        let xMargin = min(selectRect.width * 0.3, 30.0)
-        let yMargin = min(selectRect.height * 0.3, 30.0)
-        let margin = min(xMargin,yMargin)
-        if((loc.x - moveOffset.x) < -(selectRect.width - margin)) {
-            loc.x = -(selectRect.width - margin) + moveOffset.x
-        }
-        if((loc.y - moveOffset.y) < -(selectRect.height - margin)) {
-            loc.y = -(selectRect.height - margin) + moveOffset.y
-        }
-        
-        if let superSize = self.superview?.frame.size {
-            if((loc.x - moveOffset.x) > (superSize.width - margin)) {
-                loc.x = (superSize.width - margin) + moveOffset.x
-            }
-            if((loc.y - moveOffset.y) > (superSize.height - margin)) {
-                loc.y = (superSize.height - margin) + moveOffset.y
-            }
-        }
-        let dx = (loc.x - startLoc.x) / self.transform.a
-        let dy = (loc.y - startLoc.y) / self.transform.a
-//        let nx = startCenter.x + dx
-//        let ny = startCenter.y + dy
-//        self.center = CGPoint(x: nx, y: ny)
+        let dx = (at.x - startLoc.x) / self.transform.a
+        let dy = (at.y - startLoc.y) / self.transform.a
         self.transform = self.originalTransform.translatedBy(x: dx, y: dy)
-        
     }
     
     private func handleScale(at : CGPoint, type : INSelectType) {
         
         var scale : CGFloat = 1.0
-        var loc = at
-        let dx = loc.x - startLoc.x
-        let dy = loc.y - startLoc.y
+        let dx = at.x - startLoc.x
+        let dy = at.y - startLoc.y
 
+        var len = dx + dy
+        var unit : CGFloat = 160.0
+        if let ds = datasource {
+            let zoomScale = ds.zoomScale() / 3.0
+            if zoomScale > 1.0 { unit /= zoomScale }
+        }
+        
         if type == .lefttop {
-            scale = 1.0 - dx / 80.0
+            len = -dx - dy
+        } else if type == .righttop {
+            len = dx - dy
+        } else if type == .leftbottom {
+            len = -dx + dy
         }
+        len /= 2.0
+        if len < 0 { unit *= 1.5 }
+        scale = max(1.0 + len / unit, 0.0)
     
-        let newTransform = self.originalTransform.scaledBy(x: scale, y: scale)
-        if newTransform.a < 0.1  {
-            print("transform scale too small: \(self.transform.a)")
-            return
-        }
+//        print("new scale: \(scale)")
+        var newTransform = self.originalTransform.scaledBy(x: scale, y: scale)
+        if newTransform.a < 0.1 { newTransform = self.transform }
+        if newTransform.a > 5.0 { newTransform = self.transform }
+
         self.transform = newTransform
+        resizeSelectButtons()
     }
     
+    private func handleRotation(at : CGPoint) {
+        self.contentView.transform = self.originalTransform.rotated(by: 1.0)
+    }
+    
+    func resizeSelectButtons() {
+        
+        let btns = [rotateBtn,leftTopBtn,leftBottomBtn,rightTopBtn,rightBottomBtn]
+        var nscale = 1.0 / self.transform.a
+        if let ds = datasource {
+            let zoomScale = ds.zoomScale()
+            nscale /= zoomScale
+        }
+        nscale = min(1.0, max(0.3, nscale))
+        for btn in btns {
+            btn.transform = CGAffineTransform.identity.scaledBy(x: nscale, y: nscale)
+        }
+    }
     
     private func decideSelectType(at : CGPoint) -> INSelectType {
         
-        var type : INSelectType = .translation
+        var type : INSelectType = .done
+
+        if rotateBtn.frame.contains(at) { type = .rotation }
+        if leftTopBtn.frame.contains(at) { type = .lefttop }
+        if leftBottomBtn.frame.contains(at) { type = .leftbottom }
+        if rightTopBtn.frame.contains(at) { type = .righttop }
+        if rightBottomBtn.frame.contains(at) { type = .rightbottom }
         
-        let p = at - selectRect.origin
-        if p.x < 30.0 {
-            if p.y < 30 {
-                type = .lefttop
-            } else if p.y > (selectRect.height - 30.0) {
-                type = .leftbottom
-            }
-        } else if p.x > (selectRect.width - 30.0) {
-            if p.y < 30 {
-                type = .righttop
-            } else if p.y > (selectRect.height - 30.0) {
-                type = .rightbottom
-            }
+        if type == .done {
+            type = selectRect.insetBy(dx: -15.0, dy: -15.0).contains(at) ? .translation : .done
         }
-        
         return type
     }
     
@@ -183,7 +208,6 @@ class INSelectionView: UIView {
         var isFirst = true
         
         for stroke in strokes {
-            
             let rect = stroke.totalBound
             if isFirst {
                 isFirst = false
@@ -192,7 +216,6 @@ class INSelectionView: UIView {
             }
             totRect = totRect.union(rect)
         }
-//        print("total rect: \(totRect)")
         addSelRectLayer(rect: totRect)
     }
     
@@ -211,7 +234,38 @@ class INSelectionView: UIView {
             selRectLayer?.lineDashPattern = [1,0.8]
             selRectLayer?.lineCap = kCALineCapRound
             selRectLayer?.frame = self.bounds
-            self.layer.addSublayer(selRectLayer!)
+            self.contentView.layer.addSublayer(selRectLayer!)
+            
+            for stroke in strokes {
+                let layer = stroke.createLayer()
+                self.contentView.layer.addSublayer(layer)
+            }
+            
+            let size = CGSize(width: 30.0, height: 30.0)
+            rotateBtn = UIButton(frame: CGRect(origin: .zero, size: size))
+            rotateBtn.backgroundColor = .red
+            rotateBtn.center = CGPoint(x: rect.center.x, y: rect.origin.y - 50.0)
+            self.contentView.addSubview(rotateBtn)
+            
+            leftTopBtn = UIButton(frame: CGRect(origin: .zero, size: size))
+            leftTopBtn.backgroundColor = .blue
+            leftTopBtn.center = rect.origin
+            self.contentView.addSubview(leftTopBtn)
+            
+            leftBottomBtn = UIButton(frame: CGRect(origin: .zero, size: size))
+            leftBottomBtn.backgroundColor = .blue
+            leftBottomBtn.center = CGPoint(x: rect.origin.x, y: rect.origin.y + rect.size.height)
+            self.contentView.addSubview(leftBottomBtn)
+            
+            rightTopBtn = UIButton(frame: CGRect(origin: .zero, size: size))
+            rightTopBtn.backgroundColor = .blue
+            rightTopBtn.center = CGPoint(x: rect.origin.x + rect.size.width, y: rect.origin.y)
+            self.contentView.addSubview(rightTopBtn)
+            
+            rightBottomBtn = UIButton(frame: CGRect(origin: .zero, size: size))
+            rightBottomBtn.backgroundColor = .blue
+            rightBottomBtn.center = CGPoint(x: rect.origin.x + rect.size.width, y: rect.origin.y + rect.size.height)
+            self.contentView.addSubview(rightBottomBtn)
         }
     }
     

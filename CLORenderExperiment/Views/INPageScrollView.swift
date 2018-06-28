@@ -257,6 +257,8 @@ extension INPageScrollView : UIScrollViewDelegate {
                 isZoomOut = true
             }
         }
+        
+        self.pageView.selectionView?.resizeSelectButtons()
     }
     
     func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {

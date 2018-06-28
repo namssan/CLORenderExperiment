@@ -39,7 +39,11 @@ class ViewController: UIViewController {
     
     @IBAction func showSliderVC(_ sender: Any) {
 //        self.showSliderVC()
-        self.canvasScrollView.pageView.addSelectionVeiw()
+        if self.canvasScrollView.pageView.selectionView != nil {
+            self.canvasScrollView.pageView.removeSelectionView()
+        } else {
+            self.canvasScrollView.pageView.addSelectionVeiw()
+        }
     }
     
     @IBAction func earserBtnPressed(_ sender: Any) {
