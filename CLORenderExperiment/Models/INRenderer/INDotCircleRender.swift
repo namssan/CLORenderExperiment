@@ -8,12 +8,22 @@
 
 import UIKit
 
-class INDotCircleRender: INRenderer {
+class INDotCircleRender: INRenderProtocol {
     
+    func createLayer(color: UIColor, width: CGFloat, renderingPath: UIBezierPath) -> CAShapeLayer {
+        let layer = CAShapeLayer()
+        drawLayer(at: layer, color: color, width: width, renderingPath: renderingPath)
+        return layer
+    }
     
-    override func drawLayer(at: CAShapeLayer, renderingPath : UIBezierPath?) {
+    func drawLayer(at layer: CAShapeLayer, color: UIColor, width: CGFloat, renderingPath: UIBezierPath) {
         
     }
+    
+    func drawStroke(at ctx: CGContext, color: UIColor, width: CGFloat, renderingPath: UIBezierPath) {
+        
+    }
+        
 //    override func createLayer(renderingPath : UIBezierPath) -> INShapeLayer {
 //        
 //        let layer = INShapeLayer()
@@ -29,7 +39,7 @@ class INDotCircleRender: INRenderer {
 //        return layer
 //    }
     
-    override func renderPath(_ dots : [INDot], scale : CGFloat, offset : CGPoint) -> UIBezierPath {
+    func renderPath(_ dots : [INDot], scale : CGFloat, offset : CGPoint, width: CGFloat) -> UIBezierPath {
         
 //        print("print render dot: \(dots.count)")
         let treashold = (3.0 / scale)

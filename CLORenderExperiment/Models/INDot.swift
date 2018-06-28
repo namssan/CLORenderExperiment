@@ -22,7 +22,7 @@ class INDot: NSObject {
     init(point : CGPoint, pressure : CGFloat) {
         x = point.x
         y = point.y
-        p = pressure
+        p = max(pressure, 0.01)
         t = Date().timeIntervalSince1970 * 1000
         
         super.init()
@@ -31,7 +31,7 @@ class INDot: NSObject {
     init(point : CGPoint, pressure : CGFloat, time : TimeInterval) {
         x = point.x
         y = point.y
-        p = pressure
+        p = max(pressure, 0.01)
         t = time
         
         super.init()

@@ -8,23 +8,45 @@
 
 import UIKit
 
-class INNeonRender: INRenderer {
-
-    override func drawLayer(at: CAShapeLayer, renderingPath : UIBezierPath?) {
-        at.lineJoin = kCALineJoinRound
-        at.lineCap = kCALineCapRound
-        at.path = renderingPath?.cgPath
-        at.strokeColor = UIColor.white.cgColor
-        at.fillColor = UIColor.clear.cgColor
-        at.lineWidth = 1.0
-        at.cornerRadius = 8.0
-        at.shadowRadius = 2.0
-        at.shadowColor = UIColor.red.cgColor
-        at.shadowOpacity = 0.7
-        at.shadowOffset = CGSize(width: 0.0, height: 0.0)
+class INNeonRender: INRenderProtocol {
+    
+    func createLayer(color: UIColor, width: CGFloat, renderingPath: UIBezierPath) -> CAShapeLayer {
+        let layer = CAShapeLayer()
+        drawLayer(at: layer, color: color, width: width, renderingPath: renderingPath)
+        return layer
     }
     
-    override func renderPath(_ dots : [INDot], scale : CGFloat, offset : CGPoint) -> UIBezierPath {
+
+    func drawLayer(at layer: CAShapeLayer, color: UIColor, width: CGFloat, renderingPath: UIBezierPath) {
+        layer.lineJoin = kCALineJoinRound
+        layer.lineCap = kCALineCapRound
+        layer.path = renderingPath.cgPath
+        layer.strokeColor = UIColor.white.cgColor
+        layer.fillColor = UIColor.clear.cgColor
+        layer.lineWidth = width
+//        layer.cornerRadius = 8.0
+        layer.shadowRadius = 5.0
+        layer.shadowColor = color.cgColor
+        layer.shadowOpacity = 1.0
+        layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+    }
+    
+    func drawStroke(at ctx: CGContext, color: UIColor, width: CGFloat, renderingPath: UIBezierPath) {
+        
+        UIGraphicsPushContext(ctx)
+        ctx.setShadow(offset: .zero, blur: 5.0, color: color.cgColor)
+        ctx.setFillColor(UIColor.clear.cgColor)
+        
+        renderingPath.lineCapStyle = .round
+        renderingPath.lineJoinStyle = .round
+        renderingPath.lineWidth = width
+        UIColor.white.setStroke()
+        renderingPath.stroke()
+        
+        UIGraphicsPopContext()
+    }
+    
+    func renderPath(_ dots : [INDot], scale : CGFloat, offset : CGPoint, width: CGFloat) -> UIBezierPath {
         
         let renderingPath = UIBezierPath()
         var renderCtr = 0

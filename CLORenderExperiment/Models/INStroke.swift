@@ -14,7 +14,7 @@ enum INRenderType : Int {
     case neon
     case marker
     
-    var renderer : INRenderer {
+    var renderer : INRenderProtocol {
         switch self {
         case .neopen: return INNeoPenRender()
         case .foutain: return INFountainRender()
@@ -32,11 +32,9 @@ enum INRenderType : Int {
     var ps = [Float32]()
     var ts = [UInt64]()
     
-    private var renderPts :[CGPoint] = [.zero,.zero,.zero,.zero,.zero]
-    private var renderCtr = 0
     private let internalQueue = DispatchQueue(label: "INStroke.InternalQueue")
-    private var renderer = INRenderer()
-    private var viewSize : CGSize = .zero
+    private var renderer : INRenderProtocol = INNeoPenRender()
+    private var viewSize : CGSize = CGSize(width: 1.0, height: 1.0)
     
     var renderType : INRenderType = .neopen
     var dotCount : Int32 = 0
@@ -44,11 +42,26 @@ enum INRenderType : Int {
     var startTime : UInt64 = 0
     var color : UIColor = UIColor.black
     var isHidden : Bool = false
-    var totalBound : CGRect = .zero
+    var totalBound : CGRect {
+        get {
+            return renderingPath.bounds.insetBy(dx: -CGFloat(thickness), dy: -CGFloat(thickness))
+        }
+    }
     
     var renderingPath = UIBezierPath()
     
     override init() {
+        super.init()
+    }
+    
+    init(rendertype type: INRenderType, color penColor : UIColor, thickness penThickness : CGFloat) {
+        
+        renderType = type
+        renderer = type.renderer
+        dotCount = 0
+        color = penColor
+        thickness = Float32(penThickness)
+        
         super.init()
     }
     
@@ -94,7 +107,7 @@ enum INRenderType : Int {
     }
     
     func copyStroke() -> INStroke {
-
+        
         var dots = [INDot]()
         if(dotCount > 0) {
             for idx in 0...dotCount-1 {
@@ -110,13 +123,14 @@ enum INRenderType : Int {
         }
         let copy = INStroke(dots: dots, rendertype: renderType, color: color, thickness: CGFloat(thickness))
         copy.startTime = startTime
+        copy.renderingPath = UIBezierPath(cgPath: renderingPath.cgPath)
         
         return copy
     }
     
-    func createLayer() -> INShapeLayer {
-        let layer = renderer.createLayer(renderingPath:renderingPath)
-
+    func createLayer() -> CAShapeLayer {
+        let layer = renderer.createLayer(color: color, width: CGFloat(thickness), renderingPath: renderingPath)
+        
         let bounds = renderingPath.bounds
         let anchor = CGPoint(x: bounds.midX/viewSize.width, y: bounds.midY/viewSize.height)
         
@@ -124,15 +138,14 @@ enum INRenderType : Int {
         layer.frame = CGRect(origin: .zero, size: viewSize)
         let degrees = -20.0
         let radians = CGFloat(degrees * Double.pi / 180)
-//        layer.transform = CATransform3DMakeRotation(radians, 0.0, 0.0, 1.0)//CATransform3DMakeScale(1.0, 2.0, 1.0)
-//        layer.transform = CATransform3DMakeScale(1.0, 2.0, 1.0)
+        //        layer.transform = CATransform3DMakeRotation(radians, 0.0, 0.0, 1.0)//CATransform3DMakeScale(1.0, 2.0, 1.0)
+        //        layer.transform = CATransform3DMakeScale(1.0, 2.0, 1.0)
+        //        print("bounds => \(bounds) ---> anchor: \(anchor)")
         
-        print("bounds => \(bounds) ---> anchor: \(anchor)")
-
         return layer
     }
     
-    func renderStroke(size : CGSize, offset : CGPoint) -> UIBezierPath {
+    private func renderStroke(size : CGSize, offset : CGPoint) -> UIBezierPath {
         
         self.viewSize = size
         let normalizer = max(size.width, size.height)
@@ -147,37 +160,61 @@ enum INRenderType : Int {
             dots.append(dot)
         }
         
-        renderingPath = renderer.renderPath(dots, scale: normalizer, offset: offset)
+        renderingPath = renderer.renderPath(dots, scale: normalizer, offset: offset, width: CGFloat(thickness))
         return renderingPath
     }
     
+    func appendDot(dot : INDot, size : CGSize, offset : CGPoint) -> UIBezierPath {
+        
+        self.viewSize = size
+        let normalizer = max(size.width, size.height)
+        
+        if dotCount == 0 {
+            startTime = UInt64(dot.t)
+        }
+        xs.append(Float32(dot.x))
+        ys.append(Float32(dot.y))
+        ps.append(Float32(dot.p))
+        ts.append(UInt64(dot.t))
+        dotCount += 1
+        
+        if renderType == .neopen {
+            renderingPath = renderer.buildDot!(dot: dot, scale: normalizer, offset: offset, width: CGFloat(thickness))
+            return renderingPath
+        }
+        
+        return renderStroke(size: size, offset: offset)
+    }
+    
+    //    func appendDotEnd(size : CGSize, offset : CGPoint) -> UIBezierPath {
+    //
+    //        let normalizer = max(size.width, size.height)
+    //
+    //        if renderType == .neopen {
+    //            let dot1 = getDot(at: Int(dotCount) - 2)
+    //            let dot2 = getDot(at: Int(dotCount) - 1)
+    //            let uv = dot1.point.unit(to: dot2.point)
+    //            let len = dot1.point.len(to: dot2.point)
+    //            let vec = dot2.point + (uv * len * 2.0)
+    //            let p = dot2.p / 2.0
+    //            let dot = INDot(point: vec, pressure: p)
+    //
+    //            renderingPath = renderer.renderEnd!(dot: dot2, scale: normalizer, offset: offset, width: CGFloat(thickness))
+    //        }
+    //        return renderingPath
+    //    }
     
     func drawStroke(ctx : CGContext) {
         
         drawStroke(ctx: ctx, strokeColor: color)
     }
-
+    
     private func drawStroke(ctx : CGContext, strokeColor : UIColor) {
         
         ctx.saveGState()
-        
-        if(renderType == .neopen) {
-            internalQueue.sync {
-                ctx.setStrokeColor(UIColor.clear.cgColor);
-                ctx.setFillColor(strokeColor.cgColor);
-                ctx.addPath(self.renderingPath.cgPath);
-                ctx.fillPath();
-            }
-            
-        } else {
-            
-            UIGraphicsPushContext(ctx)
-            strokeColor.setStroke()
-            renderingPath.stroke()
-            UIGraphicsPopContext()
-        }
-        
+        renderer.drawStroke(at: ctx, color: strokeColor, width: CGFloat(thickness), renderingPath: renderingPath)
         ctx.restoreGState()
+        
     }
     
     
@@ -255,9 +292,9 @@ enum INRenderType : Int {
         
         return (position - pos)
     }
-
-    func writeStroke() -> Data {
     
+    func writeStroke() -> Data {
+        
         let strokeData = NSMutableData()
         
         var type = renderType.rawValue
@@ -293,6 +330,17 @@ enum INRenderType : Int {
         return CGPoint(x: x, y: y)
     }
     
+    func getDot(at : Int) -> INDot {
+        if at < 0 || at >= dotCount {
+            return INDot(point: .zero, pressure: 0.0)
+        }
+        let x = Double(xs[at])
+        let y = Double(ys[at])
+        let p = CGFloat(ps[at])
+        let t = Double(ts[at])
+        return INDot(point: CGPoint(x: x, y: y), pressure: p, time: t)
+    }
+    
     func translate(offset : CGPoint) {
         
         let dx = Float32(offset.x)
@@ -305,5 +353,5 @@ enum INRenderType : Int {
             }
         }
     }
-
+    
 }
