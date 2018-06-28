@@ -52,8 +52,6 @@ class INSelectionView: UIView {
     var datasource : INSelectionViewDataSource?
     
     fileprivate var startLoc : CGPoint = .zero
-
-    
     fileprivate var selectType : INSelectType = .done
     fileprivate var selectRect : CGRect = .zero
     fileprivate var selRectLayer : CAShapeLayer?
@@ -197,7 +195,7 @@ class INSelectionView: UIView {
         if rightBottomBtn.frame.contains(at) { type = .rightbottom }
         
         if type == .done {
-            type = selectRect.insetBy(dx: -15.0, dy: -15.0).contains(at) ? .translation : .done
+            type = selectRect.insetBy(dx: -5.0, dy: -5.0).contains(at) ? .translation : .done
         }
         return type
     }
