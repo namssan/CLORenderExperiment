@@ -61,11 +61,11 @@ class INSelectionView: UIView {
     fileprivate var strokes = [INStroke]()
     fileprivate var originalTransform : CGAffineTransform = CGAffineTransform.identity
     
-    fileprivate var rotateBtn = UIButton()
-    fileprivate var leftTopBtn = UIButton()
-    fileprivate var leftBottomBtn = UIButton()
-    fileprivate var rightTopBtn = UIButton()
-    fileprivate var rightBottomBtn = UIButton()
+    fileprivate var rotateBtn = UIView()
+    fileprivate var leftTopBtn = UIView()
+    fileprivate var leftBottomBtn = UIView()
+    fileprivate var rightTopBtn = UIView()
+    fileprivate var rightBottomBtn = UIView()
     
     
     lazy var contentView : UIView = {
@@ -242,27 +242,27 @@ class INSelectionView: UIView {
             }
             
             let size = CGSize(width: 50.0, height: 50.0)
-            rotateBtn = UIButton(frame: CGRect(origin: .zero, size: size))
+            rotateBtn = UIView(frame: CGRect(origin: .zero, size: size))
             rotateBtn.backgroundColor = .red
             rotateBtn.center = CGPoint(x: rect.center.x, y: rect.origin.y - 80.0)
             self.contentView.addSubview(rotateBtn)
             
-            leftTopBtn = UIButton(frame: CGRect(origin: .zero, size: size))
+            leftTopBtn = UIView(frame: CGRect(origin: .zero, size: size))
             leftTopBtn.backgroundColor = .blue
             leftTopBtn.center = rect.origin
             self.contentView.addSubview(leftTopBtn)
             
-            leftBottomBtn = UIButton(frame: CGRect(origin: .zero, size: size))
+            leftBottomBtn = UIView(frame: CGRect(origin: .zero, size: size))
             leftBottomBtn.backgroundColor = .blue
             leftBottomBtn.center = CGPoint(x: rect.origin.x, y: rect.origin.y + rect.size.height)
             self.contentView.addSubview(leftBottomBtn)
             
-            rightTopBtn = UIButton(frame: CGRect(origin: .zero, size: size))
+            rightTopBtn = UIView(frame: CGRect(origin: .zero, size: size))
             rightTopBtn.backgroundColor = .blue
             rightTopBtn.center = CGPoint(x: rect.origin.x + rect.size.width, y: rect.origin.y)
             self.contentView.addSubview(rightTopBtn)
             
-            rightBottomBtn = UIButton(frame: CGRect(origin: .zero, size: size))
+            rightBottomBtn = UIView(frame: CGRect(origin: .zero, size: size))
             rightBottomBtn.backgroundColor = .blue
             rightBottomBtn.center = CGPoint(x: rect.origin.x + rect.size.width, y: rect.origin.y + rect.size.height)
             self.contentView.addSubview(rightBottomBtn)
