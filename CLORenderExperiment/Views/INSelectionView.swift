@@ -72,7 +72,7 @@ class INSelectionView: UIView {
         loc2.y /= originalTransform.a
         let state = gesture.state
         
-        print("loc1 :\(loc1) --- \(loc2)")
+//        print("loc1 :\(loc1) --- \(loc2)")
         
         if state == .began {
             selectType = selectRect.insetBy(dx: -15.0, dy: -15.0).contains(loc1) ? .translation : .none
@@ -126,8 +126,8 @@ class INSelectionView: UIView {
                 loc.y = (superSize.height - margin) + moveOffset.y
             }
         }
-        let dx = loc.x - startLoc.x
-        let dy = loc.y - startLoc.y
+        let dx = (loc.x - startLoc.x) / self.transform.a
+        let dy = (loc.y - startLoc.y) / self.transform.a
 //        let nx = startCenter.x + dx
 //        let ny = startCenter.y + dy
 //        self.center = CGPoint(x: nx, y: ny)
