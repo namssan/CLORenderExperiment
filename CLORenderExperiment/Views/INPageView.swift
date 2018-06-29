@@ -218,6 +218,7 @@ class INPageView: UIView {
         selectionView?.datasource = self
         self.addSubview(selectionView!)
         scrollView?.addSelectionPanGesture()
+        selectionView?.resizeSelectButtons()
     }
     
     func removeSelectionView() {
@@ -355,10 +356,10 @@ extension INPageView : INSelectionViewDelegate {
         guideLayer?.removeFromSuperlayer()
         canvasLayer?.removeFromSuperlayer()
         
-//        self.layer.setNeedsDisplay(trect1)
-//        self.layer.setNeedsDisplay(trect2)
-        self.layer.contents = nil
-        self.setNeedsDisplay()
+        self.layer.setNeedsDisplay(trect1)
+        self.layer.setNeedsDisplay(trect2)
+//        self.layer.contents = nil
+//        self.setNeedsDisplay()
     }
     
     func didMoveOutOfView() {

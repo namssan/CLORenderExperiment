@@ -257,7 +257,6 @@ extension INPageScrollView : UIScrollViewDelegate {
                 isZoomOut = true
             }
         }
-        
         self.pageView.selectionView?.resizeSelectButtons()
     }
     

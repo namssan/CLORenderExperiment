@@ -48,8 +48,8 @@ class INSelectionView: UIView {
         // Drawing code
     }
     */
-    var delegate : INSelectionViewDelegate?
-    var datasource : INSelectionViewDataSource?
+    weak var delegate : INSelectionViewDelegate?
+    weak var datasource : INSelectionViewDataSource?
     
     fileprivate var startLoc : CGPoint = .zero
     fileprivate var selectType : INSelectType = .done
@@ -79,6 +79,10 @@ class INSelectionView: UIView {
         self.init(frame: frame)
         self.strokes = strokes
         addSelectRectLayer()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
     }
     
     @objc func handlePanGesture(_ gesture : UILongPressGestureRecognizer) {
@@ -112,6 +116,7 @@ class INSelectionView: UIView {
                     // do nothing
                 }
             } else {
+                if crect.origin.x.isInfinite { return }
                 delegate?.didMoveOutOfView()
             }
             
@@ -129,7 +134,7 @@ class INSelectionView: UIView {
     }
     
     private func handleTranslation(at : CGPoint) {
-        
+
         let dx = (at.x - startLoc.x) / self.transform.a
         let dy = (at.y - startLoc.y) / self.transform.a
         self.transform = self.originalTransform.translatedBy(x: dx, y: dy)
@@ -202,10 +207,10 @@ class INSelectionView: UIView {
         var type : INSelectType = .done
 
         if rotateBtn.frame.contains(at) { type = .rotation }
-        if leftTopBtn.frame.contains(at) { type = .lefttop }
-        if leftBottomBtn.frame.contains(at) { type = .leftbottom }
-        if rightTopBtn.frame.contains(at) { type = .righttop }
-        if rightBottomBtn.frame.contains(at) { type = .rightbottom }
+        if type == .done && leftTopBtn.frame.contains(at) { type = .lefttop }
+        if type == .done && leftBottomBtn.frame.contains(at) { type = .leftbottom }
+        if type == .done && rightTopBtn.frame.contains(at) { type = .righttop }
+        if type == .done && rightBottomBtn.frame.contains(at) { type = .rightbottom }
         
         if type == .done {
             type = selectRect.insetBy(dx: -5.0, dy: -5.0).contains(at) ? .translation : .done
@@ -281,7 +286,6 @@ class INSelectionView: UIView {
             rotateBtn = UIView(frame: CGRect(origin: .zero, size: size))
             rotateBtn.backgroundColor = .clear
             rotateBtn.center = CGPoint(x: rect.center.x, y: rect.origin.y - 40.0)
-            self.contentView.addSubview(rotateBtn)
             
             let rknob = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: 24.0, height: 24.0)))
             let img = UIImage(named: "imgRotate")
@@ -352,6 +356,7 @@ class INSelectionView: UIView {
             lineLayer.lineCap = kCALineCapSquare
             self.contentView.layer.addSublayer(lineLayer)
             self.rotateBtn.addSubview(rknob)
+            self.contentView.addSubview(rotateBtn)
         }
     }
     
