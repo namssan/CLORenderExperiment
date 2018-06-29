@@ -134,6 +134,11 @@ class INPageView: UIView {
         canvasLayer = stroke.createLayer()
         
         guard stroke.dotCount >= 3 else { return }
+        let len = max(stroke.totalBound.width,stroke.totalBound.height)
+        guard len > 3.0 else {
+            print("THIS STROKE NOT CONSIDERED AS DRAW TOO SHORT !! ---- IGNORE")
+            return
+        }
         self.layer.insertSublayer(canvasLayer!, below: guideLayer)
         addStrokes(strokes: [stroke])
         drawDots()

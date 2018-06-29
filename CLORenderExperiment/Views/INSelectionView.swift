@@ -260,7 +260,7 @@ class INSelectionView: UIView {
                 self.contentView.layer.addSublayer(layer)
             }
             
-            let size = CGSize(width: 50.0, height: 50.0)
+            let size = CGSize(width: 80.0, height: 80.0)
             rotateBtn = UIView(frame: CGRect(origin: .zero, size: size))
             rotateBtn.backgroundColor = .clear
             rotateBtn.center = CGPoint(x: rect.center.x, y: rect.origin.y - 40.0)
