@@ -138,9 +138,16 @@ class INSelectionView: UIView {
     private func handleScale(at : CGPoint, type : INSelectType) {
         
         var scale : CGFloat = 1.0
-        let dx = at.x - startLoc.x
-        let dy = at.y - startLoc.y
+        
+        let radians = atan2(contentView.transform.b, contentView.transform.a)
+        let t = CGAffineTransform.identity.rotated(by: -radians)
+        var dx = at.x - startLoc.x
+        var dy = at.y - startLoc.y
+        let p = CGPoint(x: dx, y: dy).applying(t)
 
+        print("dx: \(p.x) - dy:\(p.y)")
+        dx = p.x
+        dy = p.y
         var len = dx + dy
         var unit : CGFloat = 160.0
         if let ds = datasource {
@@ -158,24 +165,23 @@ class INSelectionView: UIView {
         len /= 2.0
         if len < 0 { unit *= 1.5 }
         scale = max(1.0 + len / unit, 0.0)
-    
-//        print("new scale: \(scale)")
+
         var newTransform = self.originalTransform.scaledBy(x: scale, y: scale)
         if newTransform.a < 0.1 { newTransform = self.transform }
-        if newTransform.a > 5.0 { newTransform = self.transform }
-
+//        if newTransform.a > 5.0 { newTransform = self.transform }
         self.transform = newTransform
         resizeSelectButtons()
     }
     
     private func handleRotation(at : CGPoint) {
-        let dx = at.x - selectRect.center.x
-        let dy = at.y - selectRect.center.y
-        let radians = atan2(dy, dx)
-        let degrees = radians * 180 / .pi
-        print("angle : \(degrees)")
+        let center = self.convert(selectRect, to: self.superview).center
+        let dx = at.x - center.x
+        let dy = at.y - center.y
+        let radians = atan2(dy, dx) + (.pi / 2)
+        let degrees = -radians * 180 / .pi
+//        print("angle : \(degrees)")
         
-        self.contentView.transform = self.originalTransform.rotated(by: radians)
+        self.contentView.transform = CGAffineTransform.identity.rotated(by: radians)
     }
     
     func resizeSelectButtons() {
@@ -186,9 +192,11 @@ class INSelectionView: UIView {
             let zoomScale = max(ds.zoomScale(),1.0)
             nscale /= zoomScale
         }
-        nscale = min(1.0, max(0.1, nscale))
+        nscale = min(1.0, nscale / 0.5)
+        let newTransform = CGAffineTransform.identity.scaledBy(x: nscale, y: nscale)
+//        print("btn scale: \(newTransform.a)")
         for btn in btns {
-//            btn.transform = CGAffineTransform.identity.scaledBy(x: nscale, y: nscale)
+            btn.transform = newTransform
         }
     }
     
@@ -216,7 +224,7 @@ class INSelectionView: UIView {
         for stroke in strokes {
             let rect = stroke.totalBound
             if isFirst {
-                isFirst = false 
+                isFirst = false
                 totRect = rect
                 continue
             }
@@ -278,7 +286,6 @@ class INSelectionView: UIView {
             rightBottomBtn.center = CGPoint(x: rect.origin.x + rect.size.width, y: rect.origin.y + rect.size.height)
             self.contentView.addSubview(rightBottomBtn)
             
-            
             let rknob = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: 24.0, height: 24.0)))
             let img = UIImage(named: "imgRotate")
             rknob.setImage(img, for: .normal)
@@ -289,7 +296,6 @@ class INSelectionView: UIView {
             rknob.layer.shadowRadius = 1
             rknob.layer.shadowOpacity = 0.8
             rknob.center = rotateBtn.center
-            
             
             let knobSize = CGSize(width: 20.0, height: 20.0)
             let knob01 = CAShapeLayer()
@@ -337,7 +343,6 @@ class INSelectionView: UIView {
             knob04.shadowOpacity = 0.8
             self.contentView.layer.addSublayer(knob04)
         
-            
             let lineLayer = CAShapeLayer()
             path = UIBezierPath()
             path.move(to: rknob.center)
