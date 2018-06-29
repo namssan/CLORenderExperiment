@@ -6,6 +6,8 @@
 //  Copyright © 2018 Sang Nam. All rights reserved.
 //
 import UIKit
+import AudioToolbox
+
 class INShapeLayer : CAShapeLayer {
     
     var tag : UInt64 = 0
@@ -65,6 +67,7 @@ class INPageView: UIView {
     fileprivate var canvasLayer : CAShapeLayer?
     fileprivate var guideLayer : CAShapeLayer?
     fileprivate var rederingPath : UIBezierPath = UIBezierPath()
+    fileprivate var pageTransform: CGAffineTransform = CGAffineTransform.identity
     
     fileprivate var remain : Int = 0
     var selectionView : INSelectionView?
@@ -97,7 +100,7 @@ class INPageView: UIView {
         
         for stroke in self.strokes {
             let bounds = stroke.totalBound
-            if(stroke.isHidden) { continue }
+//            if(stroke.isHidden) { continue }
             if(tileBounds.intersects(bounds)) {
                 stroke.drawStroke(ctx: ctx)
             }
@@ -138,7 +141,7 @@ class INPageView: UIView {
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        guard selectionView == nil else { return }
+        guard selectionView == nil else { return }
         guard let touch = touches.first else { return }
         let loc = touch.location(in: self)
         
@@ -187,12 +190,28 @@ class INPageView: UIView {
     
     func addSelectionVeiw() {
         guard strokes.count > 0 else { return }
+        
+        var isFirst = true
+        var trect = CGRect.zero
+        
+        for stroke in strokes {
+            stroke.isHidden = true
+            if isFirst {
+                isFirst = false
+                trect = stroke.totalBound
+                continue
+            }
+            trect = trect.union(stroke.totalBound)
+        }
+        guideLayer?.removeFromSuperlayer()
+        canvasLayer?.removeFromSuperlayer()
+        self.layer.setNeedsDisplay(trect)
+        
         selectionView = INSelectionView(frame: self.bounds, strokes: strokes)
         selectionView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         selectionView?.delegate = self
         selectionView?.datasource = self
         self.addSubview(selectionView!)
-        
         scrollView?.addSelectionPanGesture()
     }
     
@@ -279,27 +298,71 @@ class INPageView: UIView {
     
     func clearCanvas(removeDotView : Bool) {
         
+        scrollView?.removeSelectionPanGesture()
+        removeSelectionView()
+        selectionView = nil
+        
         guideLayer?.removeFromSuperlayer()
         canvasLayer?.removeFromSuperlayer()
+        pageTransform = CGAffineTransform.identity
         self.strokes.removeAll()
         self.layer.contents = nil
-        self.setNeedsDisplay()
+//        self.setNeedsDisplay()
     }
         
 }
 
 extension INPageView : INSelectionViewDelegate {
     func didApplyTransform(transform: CGAffineTransform) {
-//        scrollView?.removeSelectionPanGesture()
-//        selectionView?.removeFromSuperview()
-//        selectionView = nil
+
+        scrollView?.removeSelectionPanGesture()
+        selectionView?.removeFromSuperview()
+        selectionView = nil
+        print("Apply Done")
+        
+        pageTransform = transform
+        var isFirst = true
+        var trect1 = CGRect.zero
+        var trect2 = CGRect.zero
+        
+        for stroke in strokes {
+            let rect = stroke.totalBound
+            if isFirst {
+                isFirst = false
+                trect1 = rect
+                continue
+            }
+            trect1 = trect1.union(rect)
+        }
+        
+        for stroke in strokes {
+            stroke.isHidden = false
+            ApplyCenteredPathTransformCenter(trect1.center,stroke.renderingPath, transform)
+            let rect = stroke.totalBound
+            if isFirst {
+                isFirst = false
+                trect2 = rect
+                continue
+            }
+            trect2 = trect2.union(rect)
+        }
+        
+        guideLayer?.removeFromSuperlayer()
+        canvasLayer?.removeFromSuperlayer()
+        
+//        self.layer.setNeedsDisplay(trect1)
+//        self.layer.setNeedsDisplay(trect2)
+        self.layer.contents = nil
+        self.setNeedsDisplay()
     }
     
     func didMoveOutOfView() {
         print("Out of View!!!!!!")
-        scrollView?.removeSelectionPanGesture()
-        selectionView?.removeFromSuperview()
-        selectionView = nil
+        clearCanvas(removeDotView: true)
+        
+        AudioServicesPlaySystemSound(1001)
+        let generator = UIImpactFeedbackGenerator(style: .heavy)
+        generator.impactOccurred()
     }
 }
 

@@ -42,6 +42,16 @@ void FillRect(CGRect rect, UIColor *color)
 }
 
 #pragma mark - Transform
+void ApplyCenteredPathTransformCenter(CGPoint center, UIBezierPath *path, CGAffineTransform transform)
+{
+//    CGPoint center = PathBoundingCenter(path);
+    CGAffineTransform t = CGAffineTransformIdentity;
+    t = CGAffineTransformTranslate(t, center.x, center.y);
+    t = CGAffineTransformConcat(transform, t);
+    t = CGAffineTransformTranslate(t, -center.x, -center.y);
+    [path applyTransform:t];
+}
+
 void ApplyCenteredPathTransform(UIBezierPath *path, CGAffineTransform transform)
 {
     CGPoint center = PathBoundingCenter(path);

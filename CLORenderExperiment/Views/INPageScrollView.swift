@@ -112,7 +112,7 @@ class INPageScrollView: UIScrollView {
         let minZoomScale = CGFloat(Float((Int(roundf(Float(1.0)/Float(ratio) * Float(100.0)) - 1)))*Float(0.01))
         
         self.contentSize = contentSize
-        self.maximumZoomScale = 30.0
+        self.maximumZoomScale = 7.0
         self.minimumZoomScale = minZoomScale
         self.zoomScale = minimumZoomScale
     }

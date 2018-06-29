@@ -13,6 +13,7 @@ CGPoint PathBoundingCenter(UIBezierPath *path);
 CGPoint PathCenter(UIBezierPath *path);
 
 // Transformations
+void ApplyCenteredPathTransformCenter(CGPoint center, UIBezierPath *path, CGAffineTransform transform);
 void ApplyCenteredPathTransform(UIBezierPath *path, CGAffineTransform transform);
 UIBezierPath *PathByApplyingTransform(UIBezierPath *path, CGAffineTransform transform);
 

@@ -205,14 +205,14 @@ enum INRenderType : Int {
     //    }
     
     func drawStroke(ctx : CGContext) {
-        
         drawStroke(ctx: ctx, strokeColor: color)
     }
     
-    private func drawStroke(ctx : CGContext, strokeColor : UIColor) {
+    private func drawStroke(ctx : CGContext, strokeColor : UIColor = UIColor.black) {
         
         ctx.saveGState()
-        renderer.drawStroke(at: ctx, color: strokeColor, width: CGFloat(thickness), renderingPath: renderingPath)
+        let color = isHidden ? strokeColor.withAlphaComponent(0.15) : strokeColor
+        renderer.drawStroke(at: ctx, color: color, width: CGFloat(thickness), renderingPath: renderingPath)
         ctx.restoreGState()
         
     }
