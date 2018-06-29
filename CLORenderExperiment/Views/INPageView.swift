@@ -135,7 +135,7 @@ class INPageView: UIView {
         
         guard stroke.dotCount >= 3 else { return }
         let len = max(stroke.totalBound.width,stroke.totalBound.height)
-        guard len > 3.0 else {
+        guard len > 10.0 else {
             print("THIS STROKE NOT CONSIDERED AS DRAW TOO SHORT !! ---- IGNORE")
             return
         }

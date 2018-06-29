@@ -138,14 +138,11 @@ class INSelectionView: UIView {
     private func handleScale(at : CGPoint, type : INSelectType) {
         
         var scale : CGFloat = 1.0
-        
         let radians = atan2(contentView.transform.b, contentView.transform.a)
         let t = CGAffineTransform.identity.rotated(by: -radians)
         var dx = at.x - startLoc.x
         var dy = at.y - startLoc.y
         let p = CGPoint(x: dx, y: dy).applying(t)
-
-        print("dx: \(p.x) - dy:\(p.y)")
         dx = p.x
         dy = p.y
         var len = dx + dy
@@ -191,10 +188,10 @@ class INSelectionView: UIView {
         if let ds = datasource {
             let zoomScale = max(ds.zoomScale(),1.0)
             nscale /= zoomScale
+//            print("zoomScale: \(zoomScale) -- pageScale: \(self.transform.a) ===> \(nscale)")
         }
-        nscale = min(1.0, nscale / 0.5)
+//        nscale = min(1.0, nscale)
         let newTransform = CGAffineTransform.identity.scaledBy(x: nscale, y: nscale)
-//        print("btn scale: \(newTransform.a)")
         for btn in btns {
             btn.transform = newTransform
         }
@@ -261,11 +258,6 @@ class INSelectionView: UIView {
             }
             
             let size = CGSize(width: 80.0, height: 80.0)
-            rotateBtn = UIView(frame: CGRect(origin: .zero, size: size))
-            rotateBtn.backgroundColor = .clear
-            rotateBtn.center = CGPoint(x: rect.center.x, y: rect.origin.y - 40.0)
-            self.contentView.addSubview(rotateBtn)
-            
             leftTopBtn = UIView(frame: CGRect(origin: .zero, size: size))
             leftTopBtn.backgroundColor = .clear
             leftTopBtn.center = rect.origin
@@ -286,6 +278,11 @@ class INSelectionView: UIView {
             rightBottomBtn.center = CGPoint(x: rect.origin.x + rect.size.width, y: rect.origin.y + rect.size.height)
             self.contentView.addSubview(rightBottomBtn)
             
+            rotateBtn = UIView(frame: CGRect(origin: .zero, size: size))
+            rotateBtn.backgroundColor = .clear
+            rotateBtn.center = CGPoint(x: rect.center.x, y: rect.origin.y - 40.0)
+            self.contentView.addSubview(rotateBtn)
+            
             let rknob = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: 24.0, height: 24.0)))
             let img = UIImage(named: "imgRotate")
             rknob.setImage(img, for: .normal)
@@ -295,12 +292,12 @@ class INSelectionView: UIView {
             rknob.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
             rknob.layer.shadowRadius = 1
             rknob.layer.shadowOpacity = 0.8
-            rknob.center = rotateBtn.center
+            rknob.center = rotateBtn.center - rotateBtn.frame.origin
             
             let knobSize = CGSize(width: 20.0, height: 20.0)
             let knob01 = CAShapeLayer()
             var rect = CGRect(origin: .zero, size: knobSize)
-            rect.center = leftTopBtn.center
+            rect.center = leftTopBtn.center - leftTopBtn.frame.origin
             path = UIBezierPath(roundedRect: rect, cornerRadius: knobSize.width/2.0)
             knob01.path = path.cgPath
             knob01.fillColor = UIColor(hex: 0x8ae19f).cgColor
@@ -308,10 +305,10 @@ class INSelectionView: UIView {
             knob01.shadowOffset = CGSize(width: 0.0, height: 0.0)
             knob01.shadowRadius = 1
             knob01.shadowOpacity = 0.8
-            self.contentView.layer.addSublayer(knob01)
+            self.leftTopBtn.layer.addSublayer(knob01)
             
             let knob02 = CAShapeLayer()
-            rect.center = leftBottomBtn.center
+            rect.center = leftBottomBtn.center - leftBottomBtn.frame.origin
             path = UIBezierPath(roundedRect: rect, cornerRadius: knobSize.width/2.0)
             knob02.path = path.cgPath
             knob02.fillColor = UIColor(hex: 0x8ae19f).cgColor
@@ -319,10 +316,10 @@ class INSelectionView: UIView {
             knob02.shadowOffset = CGSize(width: 0.0, height: 0.0)
             knob02.shadowRadius = 1
             knob02.shadowOpacity = 0.8
-            self.contentView.layer.addSublayer(knob02)
+            self.leftBottomBtn.layer.addSublayer(knob02)
             
             let knob03 = CAShapeLayer()
-            rect.center = rightTopBtn.center
+            rect.center = rightTopBtn.center - rightTopBtn.frame.origin
             path = UIBezierPath(roundedRect: rect, cornerRadius: knobSize.width/2.0)
             knob03.path = path.cgPath
             knob03.fillColor = UIColor(hex: 0x8ae19f).cgColor
@@ -330,10 +327,10 @@ class INSelectionView: UIView {
             knob03.shadowOffset = CGSize(width: 0.0, height: 0.0)
             knob03.shadowRadius = 1
             knob03.shadowOpacity = 0.8
-            self.contentView.layer.addSublayer(knob03)
+            self.rightTopBtn.layer.addSublayer(knob03)
 
             let knob04 = CAShapeLayer()
-            rect.center = rightBottomBtn.center
+            rect.center = rightBottomBtn.center - rightBottomBtn.frame.origin
             path = UIBezierPath(roundedRect: rect, cornerRadius: knobSize.width/2.0)
             knob04.path = path.cgPath
             knob04.fillColor = UIColor(hex: 0x8ae19f).cgColor
@@ -341,12 +338,12 @@ class INSelectionView: UIView {
             knob04.shadowOffset = CGSize(width: 0.0, height: 0.0)
             knob04.shadowRadius = 1
             knob04.shadowOpacity = 0.8
-            self.contentView.layer.addSublayer(knob04)
+            self.rightBottomBtn.layer.addSublayer(knob04)
         
             let lineLayer = CAShapeLayer()
             path = UIBezierPath()
-            path.move(to: rknob.center)
-            path.addLine(to: CGPoint(x: rknob.center.x, y: selectRect.origin.y - 3))
+            path.move(to: rotateBtn.center)
+            path.addLine(to: CGPoint(x: rotateBtn.center.x, y: selectRect.origin.y - 3))
             lineLayer.path = path.cgPath
             lineLayer.strokeColor = UIColor(hex: 0x00bf3c).cgColor
             lineLayer.lineWidth = 1.0
@@ -354,7 +351,7 @@ class INSelectionView: UIView {
             lineLayer.lineDashPattern = [2,3]
             lineLayer.lineCap = kCALineCapSquare
             self.contentView.layer.addSublayer(lineLayer)
-            self.contentView.addSubview(rknob)
+            self.rotateBtn.addSubview(rknob)
         }
     }
     
